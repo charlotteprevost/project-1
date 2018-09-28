@@ -67,7 +67,7 @@ class Square {
 
 	}
 }
-console.log(Square);
+// console.log(Square);
 
 
 /**************************************** Car ****************************************/
@@ -174,7 +174,8 @@ const game = {
 				for (let j = 0; j < game.squares.length; j++){					// 
 
 					if (car.carLetter === game.squares[j].string){
-						car.carSquares.push(game.squares[j].Square);			//Push() squares into new Car according to its letter
+
+						car.carSquares.push(game.squares[j]);			//Push() squares into new Car according to its letter
 					}															
 					
 				}
@@ -191,7 +192,7 @@ const game = {
 
 game.makeSquares();
 game.makeCars();
-console.log(game.squares);
+// console.log(game.squares);
 console.log(game.cars);
 
 /****************************************************************************************************
