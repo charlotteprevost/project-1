@@ -31,12 +31,12 @@ console.log("JS IS RUNNING");
 
 					  0 1 2 3 4 5 6 7						 
 					0 # # # # # # # #						 # # # # # # # #
-					1 # . . Q Q Q Y #						 # . . R Q Q Q #
-					2 # . . B . . Y #						 # . . R . . . #
-					3 # A A B . . Y E <--- Exit for @@		 # . . . . . @ @ <--- WIN!  
-					4 # . . . . . . #						 # . . . . . Y #
-					5 # . . P P G G #						 # . P P G G Y #
-					6 # . . . . . . #						 # . . . . . Y #
+					1 # . . C C C D #						 # . . B C C C #
+					2 # . . B . . D #						 # . . B . . . #
+					3 # A A B . . D E <--- Exit for @@		 # . . . . . @ @ <--- WIN!  
+					4 # . . . . . . #						 # . . . . . D #
+					5 # . . F F E E #						 # . F F E E D #
+					6 # . . . . . . #						 # . . . . . D #
 					7 # # # # # # # #						 # # # # # # # #
 
 
@@ -56,13 +56,8 @@ class Square {
 		this.x = x;
 		this.y = y;
 		this.occupied = false;
-		this.clicked = false;
 	}
 
-
-	isClicked(){
-
-	}
 
 }
 // console.log(Square);
@@ -77,10 +72,13 @@ class Car {
 		this.carLetter = carLetter;
 		this.carSquares = [];
 		this.direction = "null";
+		this.selected = false;
 	}
 
 
-	isSelected(){
+	toggleSelect(){
+
+		
 
 	}
 
@@ -116,14 +114,14 @@ const game = {
 	
 	exitString: "$",		// 
 
-	carString: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
+	carString: ["A","B","C","D","E","F","G","H","I","J","K","L","M",
+				"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 
 	squares: [],
 
 	walls: [],
  
 	cars: [],
-
 
 	levels: [
 		{	level: 0,//					Y VALUES			
@@ -155,7 +153,6 @@ const game = {
 				game.squares.push(square);										// Push() new Square into squares[]
 			}
 		}
-
 	},
 
 
@@ -187,13 +184,9 @@ const game = {
 						game.squares[j].occupied = true;
 						car.carSquares.push(game.squares[j]);				//Push() squares into new Car according to its letter
 					}															
-					
-				}
-			
-			game.cars.push(car);
-
+				}	
+				game.cars.push(car);
 			}
-
 	},
 
 
@@ -201,14 +194,9 @@ const game = {
 
 	setDirection(){
 		
-		console.log(game.cars);
-		for (let i = 0; i < game.cars.length; i++){			// Clean up array: remove empty arrays
-
-			// console.log(game.cars[i].carSquares);
+		for (let i = 0; i < game.cars.length; i++){			
 
 			for (j = 0; j < game.cars[i].carSquares.length; j++){
-
-				console.log(game.cars[i].carSquares);
 
 				if (game.cars[i].carSquares[0].x === game.cars[i].carSquares[1].x){
 
@@ -218,16 +206,13 @@ const game = {
 
 					game.cars[i].direction = "vertical";
 				}
-
 			}
-
-			// if (game.cars[i].carSquares[i] === []){
-			// 	game.cars[i].carSquares.splice(i, 1);
-			// }
-
 		}
 		console.log(game.cars);
 	}
+
+
+
 
 
 
@@ -269,6 +254,12 @@ game.setDirection();
 /****************************************************************************************************
 										EVENT LISTENERS
 *****************************************************************************************************/
+
+
+// Each div will have a .square, a .carLetter, a x="", and a y=""
+
+
+
 
 $('.square').on('click', (e) => {
 
