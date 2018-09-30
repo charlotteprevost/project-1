@@ -1,5 +1,7 @@
 body {
-	background-color: #EBDEF0
+	background-color: #EBDEF0;
+	font-size: 15px;
+	text-align: center;
 }
 
 #map {

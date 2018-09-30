@@ -78,7 +78,8 @@ class Car {
 
 	toggleSelect(){
 
-		
+		// When a car is selected it must be all squares that become selected
+
 
 	}
 
@@ -263,9 +264,10 @@ game.setDirection();
 
 $('.square').on('click', (e) => {
 
-	//If current target Select or deselect
-
-	//
+	const $square = $(e.currentTarget)
+	
+	console.log($square.attr("x"));
+	// game.toggleSelect();
 
 })
 
