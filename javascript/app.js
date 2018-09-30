@@ -20,7 +20,8 @@ console.log("JS IS RUNNING");
 	- One car = one array of squares, one square = one object
 
 • Move car
-	- To move a car, click on the car to select it (if change of mind, click on car again to deselect it)
+	- To move a car, click on the car to select it 
+	- If change of mind, click on other car, previous car will be deselected
 	- Check direction (are cars' squares x equal or y equal?)
 	- Check occupied (is there a car that has a square that is on that position?)
 	- If free, square(s) highlighted and clickable
@@ -76,12 +77,6 @@ class Car {
 	}
 
 
-	toggleSelect(){
-
-		// When a car is selected it must be all squares that become selected
-
-
-	}
 
 	moveUp(){
 
@@ -210,9 +205,64 @@ const game = {
 			}
 		}
 		console.log(game.cars);
+	},
+
+
+	/*********************************************** Select/Deselect Car *******************************************/
+
+	toggleSelect(xValue, yValue){
+
+		// When a car is selected it must be all squares that become selected
+		for (let i = 0; i < game.cars.length; i++){			
+
+				game.cars[i].selected = false;
+			for (j = 0; j < game.cars[i].carSquares.length; j++){
+
+
+				if ((game.cars[i].carSquares[j].x == xValue) 
+					&& (game.cars[i].carSquares[j].y == yValue)
+					&& (game.cars[i].selected === false)){
+
+					console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
+					game.cars[i].selected = true; 					// make selected true AND ALL ELSE FALSE
+
+				} else if ((game.cars[i].carSquares[j].x == xValue) 
+					&& (game.cars[i].carSquares[j].y == yValue)
+					&& (game.cars[i].selected === true)){
+					
+					console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
+					game.cars[i].selected = false;
+
+				} else {
+
+					// console.log(`x: ${game.cars[i].carSquares[j].x}, y: ${game.cars[i].carSquares[j].y} --> not clicked`);
+
+				}
+
+				// Now change highlight of the divs with function
+				// game.colourSelect();
+			}
+		}
+						console.log(game.cars);
+
+	},
+
+	colourSelect(){
+
+		for (let i = 0; i < game.cars.length; i++){
+
+			if (game.cars[i].selected === true){
+
+			const $selectedCar = $('game.cars[i]');
+
+				console.log(game.cars);
+		
+				$selectedCar.css("border-color", "2px solid black");
+			}
+
+		}
+
 	}
-
-
 
 
 
@@ -240,18 +290,6 @@ game.setDirection();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /****************************************************************************************************
 										EVENT LISTENERS
 *****************************************************************************************************/
@@ -266,8 +304,13 @@ $('.square').on('click', (e) => {
 
 	const $square = $(e.currentTarget)
 	
-	console.log($square.attr("x"));
-	// game.toggleSelect();
+	const x = $square.attr("x");
+
+	const y = $square.attr("y");
+
+	game.toggleSelect(x, y);
+
+	// Once selected maybe have a CSS effect? like a border gradient?
 
 })
 
