@@ -244,7 +244,8 @@ const game = {
 
 	colourSelect(){
 
-		$(".square").css("border", "");
+		$(".square").css("border", "");												// Reset CSS
+		$(".square").attr("selected", false);
 
 		for (let i = 0; i < game.cars.length; i++){			
 
@@ -258,16 +259,20 @@ const game = {
 
 					console.log("x: " + xValue + ", y: " + yValue);
 
-					$theSquare.attr("selected", "true");
-
-					// console.log("change colour test");
-					// grab squares' coord of the selected
+					$theSquare.attr("selected", true);
 					$theSquare.css("border", "1px solid black");
 				}
 			}
 		}
-	}
+	},
 
+
+	checkMovement(){
+
+
+
+
+	}
 
 
 
