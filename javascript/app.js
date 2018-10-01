@@ -154,13 +154,13 @@ const game = {
 
 	/****************************************** Store walls coordinates **************************************/
 
-	makeWalls(){
+	makeWalls(){														// WALLS NEVER CHANGE
 
 		for (let i = 0; i < game.squares.length; i++){
 
-			if (game.squares[i].string === "#"){							// push() to walls
+			if (game.squares[i].string === "#"){						// push() to walls
 				game.squares[i].occupied = true;
-				game.walls.push(square);
+				game.walls.push(game.squares[i]);
 			};
 		}
 	},
@@ -244,7 +244,7 @@ const game = {
 
 	colourSelect(){
 
-		$(".square").css("border", "");												// Reset CSS
+		$(".square").css("border", "");												// Set/Reset CSS as car is selected
 		$(".square").attr("selected", false);
 
 		for (let i = 0; i < game.cars.length; i++){			
@@ -267,11 +267,47 @@ const game = {
 	},
 
 
+	checkForCar(carX, carY, otherX, otherY){
+
+		if ( (carX === otherX) && ((carY-1) === otherY) ){
+			console.log("Car in x: " + otherX + ", y: " + otherY);
+		}
+	},
+
+
 	checkMovement(){
 
+				let carY = [];
+				let carX = [];
+				
+		for (let i = 0; i < game.cars.length; i++){			
 
+			// if horizontal, check low y-1 and high y+1
+			if ((game.cars[i].direction === "horizontal") && (game.cars[i].selected === true)){
 
+				console.log(game.cars[i]);
 
+				// Get car's X and Ys
+				for (let j = 0; j < game.cars[i].carSquares.length; j++){
+					carX = game.cars[i].carSquares[j].x;
+					carY.push(game.cars[i].carSquares[j].y);
+				}
+				console.log("horizontal car: " + game.cars[i].carLetter + ".\n The X: " + carX + ". \n The Ys: " + carY + ".");
+				
+
+			// if vertical, check lowx-1 and highx+1
+			} else if ((game.cars[i].direction === "vertical") && (game.cars[i].selected === true)){
+
+				console.log(game.cars[i]);
+
+				// Get car's X and Ys
+				for (let j = 0; j < game.cars[i].carSquares.length; j++){
+					carY = game.cars[i].carSquares[j].y;
+					carX.push(game.cars[i].carSquares[j].x);
+				}
+				console.log("vertical car: " + game.cars[i].carLetter + ".\n The Xs: " + carX + ". \n The Y: " + carY + ".");
+			}
+		}
 	}
 
 
@@ -282,6 +318,7 @@ const game = {
 };
 
 game.makeSquares(0);
+game.makeWalls();
 game.makeCars();
 game.setDirection();
 
@@ -319,8 +356,13 @@ $('.square').on('click', (e) => {
 
 	game.toggleSelect(x, y, $square);
 
-	game.colourSelect()
+	game.colourSelect();
 
+	game.checkMovement();
+
+	// console.log(game.squares);
+	// console.log(game.walls);
+	// console.log(game.cars);
 })
 
 
