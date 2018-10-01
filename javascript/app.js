@@ -267,40 +267,75 @@ const game = {
 	},
 
 
-	checkForCar(carX, carY, axis){
+	checkForCarAndWall(carX, carY, axis){
 
 		let arrayToCheckX = [];
 		let arrayToCheckY = [];
+		let wallX = "";
+		let wallY = "";
 
-		for (let i = 0; i < game.cars.length; i++){			
 
-			for (let j = 0; j < game.cars[i].carSquares.length; j++){
-
-				if (axis === "horizontal"){
+		if (axis === "horizontal"){
 			
-					arrayToCheckY.push(carY[0]-1);
-					arrayToCheckY.push(carY[carY.length-1]+1);
-					arrayToCheckX.push(carX);
-					
+			arrayToCheckY.push(carY[0]-1);
+			arrayToCheckY.push(carY[carY.length-1]+1);
+			arrayToCheckX.push(carX);
+
+			console.log("Check Ys: " + arrayToCheckY + ". Check X: " + arrayToCheckX);
+
+			for (let i = 0; i < game.cars.length; i++){			
+				for (let j = 0; j < game.cars[i].carSquares.length; j++){
 					for (let k = 0; k < arrayToCheckY.length; k++){
-
-
-					console.log("Check Ys: " + arrayToCheckY + ". Check X: " + arrayToCheckX);
 	
-						if ((arrayToCheckX[0] === game.cars[i].carSquares[j].x) && (arrayToCheckY[k] === game.cars[i].carSquares[j].y)){
-							console.log("There is a car in x: " + game.cars[i].carSquares[j].x + ", y: " + game.cars[i].carSquares[j].y);
+						if ((arrayToCheckX[0] === game.cars[i].carSquares[j].x) 
+							&& (arrayToCheckY[k] === game.cars[i].carSquares[j].y)){
+							console.log("Car in x: " + game.cars[i].carSquares[j].x + ", y: " + game.cars[i].carSquares[j].y);
 						}
-						
+					}
+				}
+			}
+			// CHECK FOR WALL
+			for (let i = 0; i < game.walls.length; i++){
+				for (let k = 0; k < arrayToCheckY.length; k++){
+					if ((arrayToCheckX[0] === game.walls[i].x) 
+						&& (arrayToCheckY[k] === game.walls[i].y)){
+						wallX = game.walls[i].x;
+						wallY = game.walls[i].y;
+						console.log(`Wall in x: ${wallX}, y: ${wallY}`);
 					}
 					
-				} else if (axis === "vertical"){
+				}
+			}
+		} else if (axis === "vertical"){
 
-					arrayToCheckX.push(carX[0]-1);
-					arrayToCheckX.push(carX[carX.length-1]+1);
-					arrayToCheckY.push(carY);
+			arrayToCheckX.push(carX[0]-1);
+			arrayToCheckX.push(carX[carX.length-1]+1);
+			arrayToCheckY.push(carY);
 
-					console.log("Check Xs: " + arrayToCheckX + ". Check Y: " + arrayToCheckY);
-
+			console.log("Check Xs: " + arrayToCheckX + ". Check Y: " + arrayToCheckY);
+			
+			for (let i = 0; i < game.cars.length; i++){			
+				for (let j = 0; j < game.cars[i].carSquares.length; j++){
+					for (let k = 0; k < arrayToCheckX.length; k++){
+	
+						if ((arrayToCheckY[0] === game.cars[i].carSquares[j].y) 
+							&& (arrayToCheckX[k] === game.cars[i].carSquares[j].x)){
+							console.log("Car in x: " + game.cars[i].carSquares[j].x + ", y: " + game.cars[i].carSquares[j].y);
+						}
+						// CHECK FOR WALL
+					}	
+				}
+			}
+			// CHECK FOR WALL
+			for (let i = 0; i < game.walls.length; i++){
+				for (let k = 0; k < arrayToCheckX.length; k++){
+					if ((arrayToCheckY[0] === game.walls[i].y) 
+						&& (arrayToCheckX[k] === game.walls[i].x)){
+						wallX = game.walls[i].x;
+						wallY = game.walls[i].y;
+						console.log(`Wall in x: ${wallX}, y: ${wallY}`);
+					}
+					
 				}
 			}
 		}
@@ -354,7 +389,7 @@ const game = {
 				// Highest Y+1
 				// carY[carY.length-1]+1
 				//(carY[0]-1), (carY[carY.length-1]+1), "y", carX, "x"
-				game.checkForCar(carX, carY, "horizontal");
+				game.checkForCarAndWall(carX, carY, "horizontal");
 
 
 			// if vertical
@@ -368,7 +403,7 @@ const game = {
 					carX.push(game.cars[i].carSquares[j].x);
 				}
 				console.log("vertical car: " + game.cars[i].carLetter + ".\n The Xs: " + carX + ". \n The Y: " + carY + ".");
-				game.checkForCar(carX, carY, "vertical");
+				game.checkForCarAndWall(carX, carY, "vertical");
 
 			}
 		}
