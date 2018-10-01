@@ -225,39 +225,44 @@ const game = {
 
 					console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
 					game.cars[i].selected = true; 					// make selected true AND ALL ELSE FALSE
-					game.colourSelect();
-						
+					// game.colourSelect();
+
 				} else if ((game.cars[i].carSquares[j].x == xValue) 
 					&& (game.cars[i].carSquares[j].y == yValue)
 					&& (game.cars[i].selected === true)){
 					
 					console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
 					game.cars[i].selected = false;
-
-				} else {
-
-					// console.log(`x: ${game.cars[i].carSquares[j].x}, y: ${game.cars[i].carSquares[j].y} --> not clicked`);
-				}
+				} 
+				// else {
+				// 	console.log(`x: ${game.cars[i].carSquares[j].x}, y: ${game.cars[i].carSquares[j].y} --> not clicked`);
+				// }
 			}
 		}
-				// Once selected maybe have a CSS effect? like a border gradient?
-				// game.colourSelect();
 	},
 
+
 	colourSelect(){
+
+		$(".square").css("border", "");
 
 		for (let i = 0; i < game.cars.length; i++){			
 
 			for (let j = 0; j < game.cars[i].carSquares.length; j++){
 
-				// $('.square').attr("x", "game.cars[i].carSquares[j].x"); 
-				// $('.square').attr("y", "game.cars[i].carSquares[j].y");
+				let xValue = game.cars[i].carSquares[j].x;
+				let yValue = game.cars[i].carSquares[j].y;
+				let $theSquare = $(".square[x=" + xValue + "][y=" + yValue + "]");
 
 				if (game.cars[i].selected === true){
 
-					console.log("change colour test");
+					console.log("x: " + xValue + ", y: " + yValue);
+
+					$theSquare.attr("selected", "true");
+
+					// console.log("change colour test");
 					// grab squares' coord of the selected
-					$('.square').css("border", "1px solid black");
+					$theSquare.css("border", "1px solid black");
 				}
 			}
 		}
@@ -309,7 +314,7 @@ $('.square').on('click', (e) => {
 
 	game.toggleSelect(x, y, $square);
 
-	console.log($square);
+	game.colourSelect()
 
 })
 
