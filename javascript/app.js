@@ -267,22 +267,77 @@ const game = {
 	},
 
 
-	checkForCar(carX, carY, otherX, otherY){
+	checkForCar(carX, carY, axis){
 
-		if ( (carX === otherX) && ((carY-1) === otherY) ){
-			console.log("Car in x: " + otherX + ", y: " + otherY);
+		let arrayToCheckX = [];
+		let arrayToCheckY = [];
+
+		for (let i = 0; i < game.cars.length; i++){			
+
+			for (let j = 0; j < game.cars[i].carSquares.length; j++){
+
+				if (axis === "horizontal"){
+			
+					arrayToCheckY.push(carY[0]-1);
+					arrayToCheckY.push(carY[carY.length-1]+1);
+					arrayToCheckX.push(carX);
+					
+					for (let k = 0; k < arrayToCheckY.length; k++){
+
+
+					console.log("Check Ys: " + arrayToCheckY + ". Check X: " + arrayToCheckX);
+	
+						if ((arrayToCheckX[0] === game.cars[i].carSquares[j].x) && (arrayToCheckY[k] === game.cars[i].carSquares[j].y)){
+							console.log("There is a car in x: " + game.cars[i].carSquares[j].x + ", y: " + game.cars[i].carSquares[j].y);
+						}
+						
+					}
+					
+				} else if (axis === "vertical"){
+
+					arrayToCheckX.push(carX[0]-1);
+					arrayToCheckX.push(carX[carX.length-1]+1);
+					arrayToCheckY.push(carY);
+
+					console.log("Check Xs: " + arrayToCheckX + ". Check Y: " + arrayToCheckY);
+
+				}
+			}
 		}
+
+
+
+		// 		for (let k = 0; k < carX.length; k++){
+		// 			if (carX[k] === game.cars[i].carSquares[j].x){
+		// 				console.log("There is another car in x: " + game.cars[i].carSquares[j].x);
+
+
+
+
+						// for (let l = 0; l < carY.length; l++){
+						// 	if (carY[l] === game.cars[i].carSquares[j].y)
+						// 		console.log("And that other car is in y: " + );
+						// }
+				// 	}
+				// }		
+
+
+
+				// If there is another car to the left (y-1) that has selected car's value
+				// if (((game.cars[i].carSquares[j].valueAxis === low1) || (game.cars[i].carSquares[j].valueAxis === high1)) && (game.cars[i].carSquares[j].sameValueAxis === sameValue)){
+				// 	console.log("theres a car here!");
+				// }
 	},
 
 
 	checkMovement(){
-
-				let carY = [];
-				let carX = [];
+		/*............... First get all Xs and Ys of selected and store in arrays ...............*/
+		let carX = [];
+		let carY = [];
 				
 		for (let i = 0; i < game.cars.length; i++){			
 
-			// if horizontal, check low y-1 and high y+1
+			// if horizontal
 			if ((game.cars[i].direction === "horizontal") && (game.cars[i].selected === true)){
 
 				console.log(game.cars[i]);
@@ -294,8 +349,15 @@ const game = {
 				}
 				console.log("horizontal car: " + game.cars[i].carLetter + ".\n The X: " + carX + ". \n The Ys: " + carY + ".");
 				
+				// Lowest Y-1
+				// carY[0]-1
+				// Highest Y+1
+				// carY[carY.length-1]+1
+				//(carY[0]-1), (carY[carY.length-1]+1), "y", carX, "x"
+				game.checkForCar(carX, carY, "horizontal");
 
-			// if vertical, check lowx-1 and highx+1
+
+			// if vertical
 			} else if ((game.cars[i].direction === "vertical") && (game.cars[i].selected === true)){
 
 				console.log(game.cars[i]);
@@ -306,6 +368,8 @@ const game = {
 					carX.push(game.cars[i].carSquares[j].x);
 				}
 				console.log("vertical car: " + game.cars[i].carLetter + ".\n The Xs: " + carX + ". \n The Y: " + carY + ".");
+				game.checkForCar(carX, carY, "vertical");
+
 			}
 		}
 	}
