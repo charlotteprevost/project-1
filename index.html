@@ -1,88 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<!-- JQUERY -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 	
+	<!-- LINK STYLE -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
 	
 	<title>Rush Hour</title>
 </head>
 <body>
+	<h1>Rush Hour</h1>
 
 	<div id="map">
 		
-		<div class="square" x="0" y="0">y-0<br/>x-0</div>
-		<div class="square" x="0" y="1">y-1</div>
-		<div class="square" x="0" y="2">y-2</div>
-		<div class="square" x="0" y="3">y-3</div>
-		<div class="square" x="0" y="4">y-4</div>
-		<div class="square" x="0" y="5">y-5</div>
-		<div class="square" x="0" y="6">y-6</div>
-		<div class="square" x="0" y="7">y-7</div>
+		<div class="square wall" x="0" y="0">y-0<br/>x-0</div>
+		<div class="square wall" x="0" y="1">y-1</div>
+		<div class="square wall" x="0" y="2">y-2</div>
+		<div class="square wall" x="0" y="3">y-3</div>
+		<div class="square wall" x="0" y="4">y-4</div>
+		<div class="square wall" x="0" y="5">y-5</div>
+		<div class="square wall" x="0" y="6">y-6</div>
+		<div class="square wall" x="0" y="7">y-7</div>
 
-		<div class="square" x="1" y="0">x-1</div>
+		<div class="square wall" x="1" y="0">x-1</div>
 		<div class="square" x="1" y="1"></div>
 		<div class="square" x="1" y="2"></div>
 		<div class="square" x="1" y="3"></div>
 		<div class="square" x="1" y="4"></div>
 		<div class="square" x="1" y="5"></div>
 		<div class="square" x="1" y="6"></div>
-		<div class="square" x="1" y="7"></div>
+		<div class="square wall" x="1" y="7"></div>
 
-		<div class="square" x="2" y="0">x-2</div>
+		<div class="square wall" x="2" y="0">x-2</div>
 		<div class="square" x="2" y="1"></div>
 		<div class="square" x="2" y="2"></div>
 		<div class="square" x="2" y="3"></div>
 		<div class="square" x="2" y="4"></div>
 		<div class="square" x="2" y="5"></div>
 		<div class="square" x="2" y="6"></div>
-		<div class="square" x="2" y="7"></div>
+		<div class="square wall" x="2" y="7"></div>
 
-		<div class="square" x="3" y="0">x-3</div>
+		<div class="square wall" x="3" y="0">x-3</div>
 		<div class="square" x="3" y="1"></div>
 		<div class="square" x="3" y="2"></div>
 		<div class="square" x="3" y="3"></div>
 		<div class="square" x="3" y="4"></div>
 		<div class="square" x="3" y="5"></div>
 		<div class="square" x="3" y="6"></div>
-		<div class="square" x="3" y="7"></div>
+		<div class="square" id="exit" x="3" y="7"></div>
 
-		<div class="square" x="4" y="0">x-4</div>
+		<div class="square wall" x="4" y="0">x-4</div>
 		<div class="square" x="4" y="1"></div>
 		<div class="square" x="4" y="2"></div>
 		<div class="square" x="4" y="3"></div>
 		<div class="square" x="4" y="4"></div>
 		<div class="square" x="4" y="5"></div>
 		<div class="square" x="4" y="6"></div>
-		<div class="square" x="4" y="7"></div>
+		<div class="square wall" x="4" y="7"></div>
 
-		<div class="square" x="5" y="0">x-5</div>
+		<div class="square wall" x="5" y="0">x-5</div>
 		<div class="square" x="5" y="1"></div>
 		<div class="square" x="5" y="2"></div>
 		<div class="square" x="5" y="3"></div>
 		<div class="square" x="5" y="4"></div>
 		<div class="square" x="5" y="5"></div>
 		<div class="square" x="5" y="6"></div>
-		<div class="square" x="5" y="7"></div>
+		<div class="square wall" x="5" y="7"></div>
 
-		<div class="square" x="6" y="0">x-6</div>
+		<div class="square wall" x="6" y="0">x-6</div>
 		<div class="square" x="6" y="1"></div>
 		<div class="square" x="6" y="2"></div>
 		<div class="square" x="6" y="3"></div>
 		<div class="square" x="6" y="4"></div>
 		<div class="square" x="6" y="5"></div>
 		<div class="square" x="6" y="6"></div>
-		<div class="square" x="6" y="7"></div>
+		<div class="square wall" x="6" y="7"></div>
 
-		<div class="square" x="7" y="0">x-7</div>
-		<div class="square" x="7" y="1"></div>
-		<div class="square" x="7" y="2"></div>
-		<div class="square" x="7" y="3"></div>
-		<div class="square" x="7" y="4"></div>
-		<div class="square" x="7" y="5"></div>
-		<div class="square" x="7" y="6"></div>
-		<div class="square" x="7" y="7"></div>
+		<div class="square wall" x="7" y="0">x-7</div>
+		<div class="square wall" x="7" y="1"></div>
+		<div class="square wall" x="7" y="2"></div>
+		<div class="square wall" x="7" y="3"></div>
+		<div class="square wall" x="7" y="4"></div>
+		<div class="square wall" x="7" y="5"></div>
+		<div class="square wall" x="7" y="6"></div>
+		<div class="square wall" x="7" y="7"></div>
 
 		
 
