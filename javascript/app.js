@@ -80,107 +80,69 @@ class Car {
 		this.carSquares = [];
 		this.direction = "null";
 		this.selected = false;
-		this.colour = "";
 	}
 
-	move(x, y) { console.log("move called")
+	move(toX, toY) { 			console.log("move called")
 
+		for (let i = 0; i < game.selectedCar.carSquares.length; i++){
 
-		// if selected car horiz
-			// if + 
-				// incr y for both squares
-			// else 
-				// DECR Y FOR Both sq
+			// --------------- If selected car HORIZONTAL --------------- //
+			if (game.selectedCar.direction === "horizontal"){
 
-		// if selected vert
-			// if + 
-				// incr x for both squares
-			// ELSE 
-				// DECR x FOR Both sq
+				// If empty square to move to is to the RIGHT
+				if (game.selectedCar.carSquares[i].y < toY){
+					
+					// y++ for both squares
+					game.selectedCar.carSquares[i].y++;
 
+				// If empty square to move to is to the LEFT
+				} else {
 
-		// update where the car is on the screen
-			// erase prev car divs
-			// update actual values in data structure
-			// paint car divs
+					// y-- for both squares
+					game.selectedCar.carSquares[i].y--;
+				}
+			
+			// --------------- If selected car VERTICAL --------------- //
+			} else if (game.selectedCar.direction === "vertical"){
 
-	}
+				// If empty square to move to is ABOVE
+				if (game.selectedCar.carSquares[i].x < toX){
+					
+					// x-- for both squares
+					game.selectedCar.carSquares[i].x--;
 
-	moveUp(x, y){
-		// if square above me is not occupied
-		for (let i = 0; i < game.cars.length; i++){
-			for (let j = 0; i < game.cars[i].carSquares.length; j++){
-				
-				if ( ((game.cars[i].direction === "vertical") && (game.cars[i].selected === true))
-					&& isSquareFree((x-1), y) ){
-		
-						console.log("You can move up!");
-		
-						// Now change coordinates of the squares of the car that is being moved UP
-						game.cars[i].carSquares[j].x--;
+				// If empty square to move to is BELOW
+				} else {
+
+					// x++ for both squares
+					game.selectedCar.carSquares[i].x++;
 				}
 			}
+
+
+			console.log(game.selectedCar);
+			// update where the car is on the screen
+				// erase prev car divs
+				// update actual values in data structure
+				// paint car divs
 		}
 	}
 
-	moveDown(x, y){
-		// if square below me is not occupied
-		for (let i = 0; i < game.cars.length; i++){
-			for (let j = 0; i < game.cars[i].carSquares.length; j++){
-				
-				if (((game.cars[i].direction === "vertical") && (game.cars[i].selected === true))
-					&& isSquareFree((x+1), y) ){
-		
-						console.log("You can move down!");
-
-						// Now change coordinates of the squares of the car that is being moved DOWN
-						game.cars[i].carSquares[j].x++;
-				}
-			}
-		}
-	}
-
-	moveLeft(y, x){
-		// if square left of me is not occupied
-		for (let i = 0; i < game.cars.length; i++){
-			for (let j = 0; i < game.cars[i].carSquares.length; j++){
-				
-				if (((game.cars[i].direction === "horizontal") && (game.cars[i].selected === true))
-					&& isSquareFree((y-1), x) ){
-						
-						console.log("You can move left!");
-						
-						// Now change coordinates of the squares of the car that is being moved LEFT
-						game.cars[i].carSquares[j].y--;
-				}
-			}
-		}
-	}
-
-	moveRight(y, x){
-		// if square right of me is not occupied
-		for (let i = 0; i < game.cars.length; i++){
-			for (let j = 0; i < game.cars[i].carSquares.length; j++){
-				
-				if (((game.cars[i].direction === "horizontal") && (game.cars[i].selected === true))
-					&& isSquareFree((y+1), x) ){
-						
-						console.log("You can move right!");
-						
-						// Now change coordinates of the squares of the car that is being moved RIGHT
-						game.cars[i].carSquares[j].y++;
-				}
-			}
-		}
-	}
 }
 
-
 /****************************************************************************************************
+												
+*****************************************************************************************************/
+
+/**************************************************************************************************************
+
+***************************************************************************************************************
 
 											GAME OBJECT
 
-*****************************************************************************************************/
+***************************************************************************************************************
+
+***************************************************************************************************************/
 
 const game = {
 	
@@ -193,7 +155,7 @@ const game = {
 	carString: ["A","B","C","D","E","F","G","H","I","J","K","L","M",
 				"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 
-	colourString: ["#E74C3C", "#3498DB", "#3498DB", "#A569BD", "#F4D03F", "#F5B041", "#AED6F1", "#FFC0CB", "#1E8449 "], 
+	colourString: ["#E74C3C", "#3498DB", "#58D68D", "#A569BD", "#F4D03F", "#F5B041", "#AED6F1", "#FFC0CB", "#1E8449 "], 
 					/*red, blue, green, purple, yellow, orange, light blue, pink, dark green*/
 
 	squares: [],
@@ -267,28 +229,45 @@ const game = {
 				}															
 			}	
 			game.cars.push(car);
+
+
+			game.assignDivs(game.cars[i])								// Assign car a div calling function below
+		}
+
+	},
+
+	/************************************* Assign each car a colour *********************************/
+
+	assignDivs(car){
+
+		// every single square inside a car will be given a div to show colour/movement to user
+		for (let i = 0; i < car.carSquares.length; i++){
+				
+				let xValue = car.carSquares[i].x;
+
+				let yValue = car.carSquares[j].y;
+
+				let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
+
 		}
 	},
 
 
 	/************************************* Assign each car a colour *********************************/
 
-	/************************************* ASK REUBEN *********************************/
-	/**********************************************************************************/
-
 	colourCars(){
 
-		for (let j = 0; j < game.cars.length; j++){
+		for (let i = 0; i < game.cars.length; i++){
 
-			for (let k = 0; k < game.cars[j].carSquares.length; k++){
+			for (let j = 0; j < game.cars[i].carSquares.length; j++){
 	
-				let xValue = game.cars[j].carSquares[k].x;
+				let xValue = game.cars[i].carSquares[j].x;
 
-				let yValue = game.cars[j].carSquares[k].y;
+				let yValue = game.cars[i].carSquares[j].y;
 
-				let $theSquare = $(".square[x=" + xValue + "][y=" + yValue + "]");
+				let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
 
-				$theSquare.css("background-color", game.colourString[j]);
+				$theSquare.css("background-color", game.colourString[i]);
 			}
 		}
 	},
@@ -320,7 +299,9 @@ const game = {
 	toggleSelect(xValue, yValue){
 
 		// When a car is selected it must be all squares that become selected
-		for (let i = 0; i < game.cars.length; i++){			
+		for (let i = 0; i < game.cars.length; i++){		
+
+			// game.selectedCar = null;
 
 			game.cars[i].selected = false;							// Reset selection with every click
 
@@ -332,6 +313,9 @@ const game = {
 
 					console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
 					game.cars[i].selected = true; 					// make selected true AND ALL ELSE FALSE
+
+					game.selectedCar = game.cars[i];
+					console.log(game.selectedCar);
 
 				} else if ((game.cars[i].carSquares[j].x == xValue) 
 					&& (game.cars[i].carSquares[j].y == yValue)
@@ -395,17 +379,12 @@ const game = {
 
 	/***************************************** Move the selected car *************************************/
 
-	moveCar(){
-		for (let i = 0; i < game.cars.length; i++){
-			game.cars[i].moveUp();
-			game.cars[i].moveDown();
-			game.cars[i].moveLeft();
-			game.cars[i].moveRight();
-		}
+	moveSelectedCar(x, y){
+
+		console.log(game.selectedCar);
+		game.selectedCar.move(x, y);
 
 	},
-
-
 
 
 	/************************************** Highlight available squares when car is selected **********************************/
@@ -597,9 +576,8 @@ game.makeCars();
 game.colourCars();
 game.setDirection();
 
-
-console.log(game.squares);
-
+console.log(game.cars);
+console.log($(".square"));
 /****************************************************************************************************
 *****************************************************************************************************/
 
@@ -621,27 +599,26 @@ console.log(game.squares);
 
 $('.square').on('click', (e) => { console.log("a square was clicked")
 
-	const $square = $(e.currentTarget)
+	const x = e.currentTarget.dataset.x; // check out HTML dataset - Vanilla/MDN, jQuery .data() (getter and setter)
 
-	const x = $square.attr("x"); // check out HTML dataset - Vanilla/MDN, jQuery .data() (getter and setter)
-
-	const y = $square.attr("y");
+	const y = e.currentTarget.dataset.y;
 
 	game.toggleSelect(x, y);
 	game.borderColourSelect();
 
 
-	// if the user clicked on a square that's not a car
+	// If click on square that's not a car
 	if(game.isSquareFree(x, y)) {
-		// try to selected car it if possible
+
+		// Move selected car if possible
 		game.moveSelectedCar(x, y);
 		
 	}
+// <div id="car-sq" data-x="3" data-y="6">
 
+// e.currentTarget.dataset.x = 7
 
-
-
-	console.log(game.cars);
+// $(e.currentTarger).data('x', 6)
 	
 });
 
