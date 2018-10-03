@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<!-- FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Biryani:800|Cabin+Sketch:700|Montserrat+Subrayada:700|Trade+Winds" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Trade+Winds|Dosis:500" rel="stylesheet">
 
 	
 	<title>Rush Hour</title>
@@ -16,85 +16,95 @@
 <body>
 
 	<h1>Rush Hour</h1>
-	<p>message</p>
-	<div id="map">
+
+	<div id="main">
 		
-		<div class="square wall" data-x="0" data-y="0"><br/></div>
-		<div class="square wall" data-x="0" data-y="1">Y-1</div>
-		<div class="square wall" data-x="0" data-y="2"></div>
-		<div class="square wall" data-x="0" data-y="3"></div>
-		<div class="square wall" data-x="0" data-y="4"></div>
-		<div class="square wall" data-x="0" data-y="5"></div>
-		<div class="square wall" data-x="0" data-y="6"></div>
-		<div class="square wall" data-x="0" data-y="7"></div>
+		<div id="message">
+			<p>You're riding your smokin' red lamborghini to class but you're stuck in a traffic jam. . .<br/><br/>Slide the cars horizontally or vertically and get yourself out of there!<br/><br/>And. . . . . . No.<br/>Drifting is <i>not</i> permitted.</p>
+		</div>
 
-		<div class="square wall" data-x="1" data-y="0">X-1</div>
-		<div class="square" data-x="1" data-y="1"></div>
-		<div class="square" data-x="1" data-y="2"></div>
-		<div class="square" data-x="1" data-y="3"></div>
-		<div class="square" data-x="1" data-y="4"></div>
-		<div class="square" data-x="1" data-y="5"></div>
-		<div class="square" data-x="1" data-y="6"></div>
-		<div class="square wall" data-x="1" data-y="7"></div>
+		<div id="map">
+			
+			<div class="square wall" id="top-left" data-x="0" data-y="0"><br/></div>
+			<div class="square wall" data-x="0" data-y="1"></div>
+			<div class="square wall" data-x="0" data-y="2"></div>
+			<div class="square wall" data-x="0" data-y="3"></div>
+			<div class="square wall" data-x="0" data-y="4"></div>
+			<div class="square wall" data-x="0" data-y="5"></div>
+			<div class="square wall" data-x="0" data-y="6"></div>
+			<div class="square wall" id="top-right"data-x="0" data-y="7"></div>
 
-		<div class="square wall" data-x="2" data-y="0"></div>
-		<div class="square" data-x="2" data-y="1"></div>
-		<div class="square" data-x="2" data-y="2"></div>
-		<div class="square" data-x="2" data-y="3"></div>
-		<div class="square" data-x="2" data-y="4"></div>
-		<div class="square" data-x="2" data-y="5"></div>
-		<div class="square" data-x="2" data-y="6"></div>
-		<div class="square wall" data-x="2" data-y="7"></div>
+			<div class="square wall" data-x="1" data-y="0"></div>
+			<div class="square" data-x="1" data-y="1"></div>
+			<div class="square" data-x="1" data-y="2"></div>
+			<div class="square" data-x="1" data-y="3"></div>
+			<div class="square" data-x="1" data-y="4"></div>
+			<div class="square" data-x="1" data-y="5"></div>
+			<div class="square" data-x="1" data-y="6"></div>
+			<div class="square wall" data-x="1" data-y="7"></div>
 
-		<div class="square wall" data-x="3" data-y="0"></div>
-		<div class="square" data-x="3" data-y="1"></div>
-		<div class="square" data-x="3" data-y="2"></div>
-		<div class="square" data-x="3" data-y="3"></div>
-		<div class="square" data-x="3" data-y="4"></div>
-		<div class="square" data-x="3" data-y="5"></div>
-		<div class="square" data-x="3" data-y="6"></div>
-		<div class="square" id="exit" data-x="3" data-y="7"><img></div>
+			<div class="square wall" data-x="2" data-y="0"></div>
+			<div class="square" data-x="2" data-y="1"></div>
+			<div class="square" data-x="2" data-y="2"></div>
+			<div class="square" data-x="2" data-y="3"></div>
+			<div class="square" data-x="2" data-y="4"></div>
+			<div class="square" data-x="2" data-y="5"></div>
+			<div class="square" data-x="2" data-y="6"></div>
+			<div class="square wall" data-x="2" data-y="7"></div>
 
-		<div class="square wall" data-x="4" data-y="0"></div>
-		<div class="square" data-x="4" data-y="1"></div>
-		<div class="square" data-x="4" data-y="2"></div>
-		<div class="square" data-x="4" data-y="3"></div>
-		<div class="square" data-x="4" data-y="4"></div>
-		<div class="square" data-x="4" data-y="5"></div>
-		<div class="square" data-x="4" data-y="6"></div>
-		<div class="square wall" data-x="4" data-y="7"></div>
+			<div class="square wall" data-x="3" data-y="0"></div>
+			<div class="square" data-x="3" data-y="1"></div>
+			<div class="square" data-x="3" data-y="2"></div>
+			<div class="square" data-x="3" data-y="3"></div>
+			<div class="square" data-x="3" data-y="4"></div>
+			<div class="square" data-x="3" data-y="5"></div>
+			<div class="square" data-x="3" data-y="6"></div>
+			<div class="square" id="exit" data-x="3" data-y="7"><img></div>
 
-		<div class="square wall" data-x="5" data-y="0"></div>
-		<div class="square" data-x="5" data-y="1"></div>
-		<div class="square" data-x="5" data-y="2"></div>
-		<div class="square" data-x="5" data-y="3"></div>
-		<div class="square" data-x="5" data-y="4"></div>
-		<div class="square" data-x="5" data-y="5"></div>
-		<div class="square" data-x="5" data-y="6"></div>
-		<div class="square wall" data-x="5" data-y="7"></div>
+			<div class="square wall" data-x="4" data-y="0"></div>
+			<div class="square" data-x="4" data-y="1"></div>
+			<div class="square" data-x="4" data-y="2"></div>
+			<div class="square" data-x="4" data-y="3"></div>
+			<div class="square" data-x="4" data-y="4"></div>
+			<div class="square" data-x="4" data-y="5"></div>
+			<div class="square" data-x="4" data-y="6"></div>
+			<div class="square wall" data-x="4" data-y="7"></div>
 
-		<div class="square wall" data-x="6" data-y="0"></div>
-		<div class="square" data-x="6" data-y="1"></div>
-		<div class="square" data-x="6" data-y="2"></div>
-		<div class="square" data-x="6" data-y="3"></div>
-		<div class="square" data-x="6" data-y="4"></div>
-		<div class="square" data-x="6" data-y="5"></div>
-		<div class="square" data-x="6" data-y="6"></div>
-		<div class="square wall" data-x="6" data-y="7"></div>
+			<div class="square wall" data-x="5" data-y="0"></div>
+			<div class="square" data-x="5" data-y="1"></div>
+			<div class="square" data-x="5" data-y="2"></div>
+			<div class="square" data-x="5" data-y="3"></div>
+			<div class="square" data-x="5" data-y="4"></div>
+			<div class="square" data-x="5" data-y="5"></div>
+			<div class="square" data-x="5" data-y="6"></div>
+			<div class="square wall" data-x="5" data-y="7"></div>
 
-		<div class="square wall" data-x="7" data-y="0"></div>
-		<div class="square wall" data-x="7" data-y="1"></div>
-		<div class="square wall" data-x="7" data-y="2"></div>
-		<div class="square wall" data-x="7" data-y="3"></div>
-		<div class="square wall" data-x="7" data-y="4"></div>
-		<div class="square wall" data-x="7" data-y="5"></div>
-		<div class="square wall" data-x="7" data-y="6"></div>
-		<div class="square wall" data-x="7" data-y="7"></div>
+			<div class="square wall" data-x="6" data-y="0"></div>
+			<div class="square" data-x="6" data-y="1"></div>
+			<div class="square" data-x="6" data-y="2"></div>
+			<div class="square" data-x="6" data-y="3"></div>
+			<div class="square" data-x="6" data-y="4"></div>
+			<div class="square" data-x="6" data-y="5"></div>
+			<div class="square" data-x="6" data-y="6"></div>
+			<div class="square wall" data-x="6" data-y="7"></div>
 
-		
+			<div class="square wall" id="bottom-left" data-x="7" data-y="0"></div>
+			<div class="square wall" data-x="7" data-y="1"></div>
+			<div class="square wall" data-x="7" data-y="2"></div>
+			<div class="square wall" data-x="7" data-y="3"></div>
+			<div class="square wall" data-x="7" data-y="4"></div>
+			<div class="square wall" data-x="7" data-y="5"></div>
+			<div class="square wall" data-x="7" data-y="6"></div>
+			<div class="square wall" id="bottom-right" data-x="7" data-y="7"></div>
+
+		</div>
+
+		<div id="level">
+			<p>Level: 0</p>
+			<button id="nextLevel">Next Level</button>
+		</div>
 
 	</div>
-
 
 	<script type="text/javascript" src="javascript/app.js"></script>
 

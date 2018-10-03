@@ -186,6 +186,42 @@ const game = {
 						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
 						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
 			]
+		},{	level: 1,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", ".", ".", "C", "C", "C", "D", "#"],	//	|
+						["#", ".", ".", "B", ".", ".", "D", "#"],	//	|
+						["#", "A", "A", "B", ".", ".", "D", "$"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|	X VALUES
+						["#", ".", ".", "F", "F", "E", "E", "#"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 2,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", ".", ".", "C", "C", "C", "D", "#"],	//	|
+						["#", ".", ".", "B", ".", ".", "D", "#"],	//	|
+						["#", "A", "A", "B", ".", ".", "D", "$"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|	X VALUES
+						["#", ".", ".", "F", "F", "E", "E", "#"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 3,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", ".", ".", "C", "C", "C", "D", "#"],	//	|
+						["#", ".", ".", "B", ".", ".", "D", "#"],	//	|
+						["#", "A", "A", "B", ".", ".", "D", "$"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|	X VALUES
+						["#", ".", ".", "F", "F", "E", "E", "#"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
 		}],
 
 
@@ -296,7 +332,7 @@ const game = {
 
 	/*********************************************** Select/Deselect Car *******************************************/
 
-	toggleSelect(xValue, yValue){ 		console.log("toggle select");
+	toggleSelect(xValue, yValue){ 
 
 		// When a car is selected it must be all squares that become selected
 		for (let i = 0; i < game.cars.length; i++){		
@@ -323,11 +359,12 @@ const game = {
 
 					console.log("Deselected car " + game.selectedCar.carLetter);
 
-					// Remove from selectedCar (deselect it)
+					// Reset CSS
+					$(".square").css("border", "");
+
+					// Remove car from selectedCar (deselect it)
 					game.selectedCar = null;
 				}
-
-
 			}
 		}
 	},
@@ -338,7 +375,6 @@ const game = {
 	borderColourSelect(selectedCar){ 		console.log("set borderColour");
 
 		$(".square").css("border", "");
-		// $(".square").attr("selected", false);
 
 		for (let i = 0; i < selectedCar.carSquares.length; i++){			
 
@@ -375,7 +411,8 @@ const game = {
 
 		// Check if theres a wall
 		if ((x == 0) || (y == 0) || (x == 7) || ((y == 7) && (x != 3))){
-			console.log("There's a wall here!");
+			$('#message').html("<p>Hmmm. . . That . . . is a wall.<br/><br/><br/>&#x28;&#xFF89;&#x25D5;&#x30EE;&#x25D5;&#x29;&#xFF89;&#x2A;&#x3A;&#xFF65;&#xFF9F;&#x2727;</p>").css("text-align", "center");
+
 			return false;
 		}
 
@@ -401,6 +438,15 @@ const game = {
 		}
 	},
 
+	/***************************************** Move the selected car *************************************/
+
+	youWin(){
+
+		if (game.selectedCar.carSquares[1].y === 7){
+			$('#message').html("<p>You win !<br/><br/> &#xFF3C;&#xFF3C;&#x5C;&#x5C;&#x20;&#x669;&#x28;&#x25D5;&#x30EE;&#x25D5;&#x29;&#x648;&#x20;&#x2F;&#x2F;&#xFF0F;&#xFF0F;</p>").css("text-align", "center");
+			return true;
+		}
+	},
 
 	/************************************** Highlight available squares when car is selected **********************************/
 						/***************************************** Optional *************************************/
@@ -450,14 +496,14 @@ game.setDirection();
 
 
 
-$('.square').on('click', (e) => { console.log("a square was clicked")
+$('.square').on('click', (e) => {
 
 	// Check out HTML dataset - Vanilla/MDN, jQuery .data() (getter and setter)
 	const x = e.currentTarget.dataset.x;
 	const y = e.currentTarget.dataset.y;
 
 	game.toggleSelect(x, y);
-	game.borderColourSelect(game.selectedCar);
+	if (game.selectedCar !== null){game.borderColourSelect(game.selectedCar);};
 
 	
 	if (game.selectedCar !== null && game.isSquareFree(x, y)) {
@@ -469,14 +515,22 @@ $('.square').on('click', (e) => { console.log("a square was clicked")
 		game.updateCars();	
 	}
 	console.log(game.cars);
+	game.youWin();
 });
 
 
+$('#nextLevel').on('click', () => {
 
+	if (game.youWin()){
+
+		console.log('button works');
+	}
+
+});
 
 // <div id="car-sq" data-x="3" data-y="6">
 // e.currentTarget.dataset.x = 7
-// $(e.currentTarger).data('x', 6)
+// $(e.currentTarget).data('x', 6)
 
 
 
