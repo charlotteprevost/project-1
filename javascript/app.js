@@ -83,45 +83,57 @@ class Car {
 
 	move(toX, toY) { 
 
-		for (let i = 0; i < game.selectedCar.carSquares.length; i++){
+		// --------------- If selected car HORIZONTAL --------------- //
+		if (game.selectedCar.direction === "horizontal"){								
 
-			// if (game.selectedCar.carSquares[i].x !== toX && game.selectedCar.carSquares[i].y !== toY){
+			// If empty square to move to is to the RIGHT 	
+			if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].y < toY && game.isSquareFree(toX, (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].y+1))){			console.log("Move right");
 
-				// --------------- If selected car HORIZONTAL --------------- //
-				if (game.selectedCar.direction === "horizontal"){
+				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
 
-					// If empty square to move to is to the RIGHT 	
-					if (game.selectedCar.carSquares[i].y < toY){	console.log("Move right");
-						
-						// y++ for both squares
+						// y++ for all squares
 						game.selectedCar.carSquares[i].y++;
-
-					// If empty square to move to is to the LEFT
-					} else if (game.selectedCar.carSquares[i].y > toY){										console.log("Move left");
-
-						// y-- for both squares
-						game.selectedCar.carSquares[i].y--;
-					}
-				
-				// --------------- If selected car VERTICAL --------------- //
-				} else if (game.selectedCar.direction === "vertical"){
-
-					// If empty square to move to is ABOVE
-					if (game.selectedCar.carSquares[i].x > toX){	console.log("Move up");
-						
-						// x-- for both squares
-						game.selectedCar.carSquares[i].x--;
-
-					// If empty square to move to is BELOW
-					} else if (game.selectedCar.carSquares[i].x < toX){										console.log("Move down");
-
-						// x++ for both squares
-						game.selectedCar.carSquares[i].x++;
-					}
 				}
-			// }
+
+			// If empty square to move to is to the LEFT
+			} else if (game.selectedCar.carSquares[0].y > toY && game.isSquareFree(toX, (game.selectedCar.carSquares[0].y-1))){										console.log("Move left");
+
+				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
+
+					// y-- for all squares
+					game.selectedCar.carSquares[i].y--;
+				}
+
+			}
+
+		
+		// --------------- If selected car VERTICAL --------------- //
+		} else if (game.selectedCar.direction === "vertical"){
+
+			// If empty square to move to is ABOVE
+			if (game.selectedCar.carSquares[0].x > toX && game.isSquareFree((game.selectedCar.carSquares[0].x-1), toY)){	console.log("Move up");
+				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
+
+					// x-- for all squares
+					game.selectedCar.carSquares[i].x--;
+
+				}
+
+
+
+			// If empty square to move to is BELOW
+			} else if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x < toX && game.isSquareFree((game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x+1), toY)){										console.log("Move down");
+				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
+
+					// x++ for all squares
+					game.selectedCar.carSquares[i].x++;
+
+				}
+
+			}
+			
 		}
-		console.log("Selected car: " + game.selectedCar.carLetter);
+			console.log("Selected car: " + game.selectedCar.carLetter);
 	}
 
 }
