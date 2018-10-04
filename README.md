@@ -106,14 +106,31 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 
 ```
   0 1 2 3 4 5 6 7						 
-0 # # # # # # # #						 # # # # # # # #				In this example, a possible move order would be:
-1 # . . Q Q Q Y #						 # . . R Q Q Q #				- PP 	left 1
-2 # . . R . . Y #						 # . . R . . . #				- GG 	left 1
-3 # @ @ R . . Y   <--- Exit for @@		 # . . . . . @ @ <--- WIN!  	- YYY 	down 3
-4 # . . . . . . #						 # . . . . . Y #				- QQQ 	right 1
-5 # . . P P G G #						 # . P P G G Y #				- RR 	up 1
-6 # . . . . . . #						 # . . . . . Y #				- @@	right 5
-7 # # # # # # # #						 # # # # # # # #
+0 # # # # # # # #						
+1 # . . Q Q Q Y #						
+2 # . . R . . Y #						
+3 # @ @ R . . Y   <--- Exit for @@	
+4 # . . . . . . #					
+5 # . . P P G G #						
+6 # . . . . . . #						
+7 # # # # # # # #						
+
+# # # # # # # #				
+# . . R Q Q Q #				
+# . . R . . . #				
+# . . . . . @ @ <--- WIN!  	
+# . . . . . Y #				
+# . P P G G Y #				
+# . . . . . Y #	
+# # # # # # # #
+
+In this example, a possible move order would be:
+- PP 	left 1
+- GG 	left 1
+- YYY 	down 3
+- QQQ 	right 1
+- RR 	up 1
+- @@	right 5
 ```
 ~~~~~~
 ~~~~~~
