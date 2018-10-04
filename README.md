@@ -104,7 +104,7 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 	• The car that must be moved in order to win is @@
 	• The only opening in the wall (and only place @@ need to occupy to win is (7, -3))
 
-
+```
   0 1 2 3 4 5 6 7						 
 0 # # # # # # # #						 # # # # # # # #				In this example, a possible move order would be:
 1 # . . Q Q Q Y #						 # . . R Q Q Q #				- PP 	left 1
@@ -114,7 +114,7 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 5 # . . P P G G #						 # . P P G G Y #				- RR 	up 1
 6 # . . . . . . #						 # . . . . . Y #				- @@	right 5
 7 # # # # # # # #						 # # # # # # # #
-
+```
 ~~~~~~
 ~~~~~~
 ---------------------------------------------------------------------------------------------------------------
