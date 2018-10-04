@@ -40,11 +40,7 @@ console.log("JS IS RUNNING");
 					6 # . . . . . . #						 # . . . . . D #
 					7 # # # # # # # #						 # # # # # # # #
 
-
-*****************************************************************************************************/
-
-
-/****************************************************************************************************
+*****************************************************************************************************
 												CLASSES
 *****************************************************************************************************/
 
@@ -67,10 +63,9 @@ class Square {
 	}
 
 }
-// console.log(Square);
 
 
-/**************************************** Car ****************************************/
+/******************************************* Car ****************************************/
 
 
 class Car {
@@ -83,7 +78,7 @@ class Car {
 
 	move(toX, toY) { 
 
-		// --------------- If selected car HORIZONTAL --------------- //
+		// -------------------- If selected car HORIZONTAL -------------------- //
 		if (game.selectedCar.direction === "horizontal"){								
 
 			// If empty square to move to is to the RIGHT 	
@@ -106,8 +101,7 @@ class Car {
 
 			}
 
-		
-		// --------------- If selected car VERTICAL --------------- //
+		// -------------------- If selected car VERTICAL -------------------- //
 		} else if (game.selectedCar.direction === "vertical"){
 
 			// If empty square to move to is ABOVE
@@ -119,8 +113,6 @@ class Car {
 
 				}
 
-
-
 			// If empty square to move to is BELOW
 			} else if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x < toX && game.isSquareFree((game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x+1), toY)){
 				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
@@ -129,27 +121,19 @@ class Car {
 					game.selectedCar.carSquares[i].x++;
 
 				}
-
 			}
-			
 		}
-			// console.log("Selected car: " + game.selectedCar.carLetter);
 	}
-
 }
 
-/****************************************************************************************************
-												
-*****************************************************************************************************/
+
 
 /**************************************************************************************************************
-
 ***************************************************************************************************************
 
-											GAME OBJECT
+*************************************************** GAME OBJECT ***********************************************
 
 ***************************************************************************************************************
-
 ***************************************************************************************************************/
 
 const game = {
@@ -163,8 +147,9 @@ const game = {
 	carString: ["A","B","C","D","E","F","G","H","I","J","K","L","M",
 				"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 
-	colourString: ["#E74C3C", "#3949AB", "#2ECC71", "#A569BD", "#F4D03F", "#F5B041", "#90CAF9", "#EF9A9A", "#1E8449", "#AFB42B", "#0097A7", "#8E24AA", "#EC407A"], 
-					/*red, 		blue, 	   green, 	 purple, 	yellow,    orange,  light blue,    pink,   dark green,  olive,	   teal*/
+	colourString: [	"#E74C3C", "#3949AB", "#2ECC71", "#A569BD", "#F4D03F",
+					"#F5B041", "#90CAF9", "#EF9A9A", "#1E8449", "#AFB42B",
+					"#0097A7", "#8E24AA", "#EC407A"], 
 
 	squares: [],
 
@@ -341,8 +326,7 @@ const game = {
 
 				if (car.carLetter === game.squares[j].string){
 
-					//Push() squares into new Car according to its letter
-					car.carSquares.push(game.squares[j]);	
+					car.carSquares.push(game.squares[j]);				//Push() squares into new Car according to its letter
 				}															
 			}	
 			game.cars.push(car);
@@ -350,36 +334,33 @@ const game = {
 	},
 
 
-	// ************************************ Update cars array ********************************
+	// ********************************************** Update cars array ******************************************
 
 	updateCars(){
 
-		$('.square').css("background-color", "");
+		$('.square').css("background-color", "");						// Reset CSS
+		$('.square:not(.wall)').css({"border-radius": "0"});			//	"	"
 
-		$('.square:not(.wall)').css({"border-radius": "0"});
-		// Replace car in the cars array with the selected car with updated coordinates
 		for (let i = 0; i < game.cars.length; i++){
 
 			if (game.selectedCar !== null && game.selectedCar.carLetter === game.cars[i].carLetter){
 
-				game.cars[i] = game.selectedCar;
+				game.cars[i] = game.selectedCar;						// Replace car in the cars array with the selected car with updated coordinates
 			}
 		}
 
-		// Paint the cars again
-		game.colourCars();
+		game.colourCars();												// Paint the cars again
 
-		// Make sure selectedCar remains "selected" for the user (has a black border)
-		if (game.selectedCar !== null) {
-		// 	game.toggleSelect();
+		if (game.selectedCar !== null) {								// Make sure selectedCar remains "selected" for the user (has a black border)
+
 			game.borderColourSelect(game.selectedCar);
 		}
 	},
 
-	// ************************************ Assign each car a colour ********************************
+
+	// ********************************************** Assign each car a colour ******************************************
 
 	colourCars(){
-
 
 		for (let i = 0; i < game.cars.length; i++){
 
@@ -391,11 +372,10 @@ const game = {
 
 				let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
 
-				$theSquare.css("background-color", game.colourString[i]);
+				$theSquare.css("background-color", game.colourString[i]);								// Apply colour from string
 
 
-
-				if ((game.cars[i].direction === "horizontal") && (j === 0)){
+				if ((game.cars[i].direction === "horizontal") && (j === 0)){							// Stylize the cars
 
 					$theSquare.css({"border-top-left-radius": "10px", "border-bottom-left-radius": "10px"});
 
@@ -415,7 +395,8 @@ const game = {
 		}
 	},
 
-		// ************************************ Clear colours for next game ********************************
+
+	// ********************************************** Clear colours for next game ******************************************
 
 	clearColour(){
 
@@ -432,16 +413,13 @@ const game = {
 				$theSquare.css("background-color", "lightgrey");
 			}
 		}
-
-		// $(".square").css({"border": "", "border-radius": 0});
 	},
 
 
+	/*********************************************** Set direction for each car *******************************************/
 
-	/*********************************************** Set car grid direction *******************************************/
 	setDirection(){
 
-		
 		for (let i = 0; i < game.cars.length; i++){			
 
 			for (let j = 0; j < game.cars[i].carSquares.length; j++){
@@ -461,38 +439,25 @@ const game = {
 
 	/*********************************************** Select/Deselect Car *******************************************/
 
-	toggleSelect(xValue, yValue){ 
+	toggleSelect(xValue, yValue){ 							// When a car is selected it must be all squares that become selected
 
-		// When a car is selected it must be all squares that become selected
 		for (let i = 0; i < game.cars.length; i++){		
 
 			for (let j = 0; j < game.cars[i].carSquares.length; j++){
-			// game.selectedCar = null;
 
-				// If what I clicked on is a car and selectedCar is empty
-				if 	((game.cars[i].carSquares[j].x == xValue) 
+				if 	((game.cars[i].carSquares[j].x == xValue) 			// If what I clicked on is a car and selectedCar is empty
 					&& (game.cars[i].carSquares[j].y == yValue) 
 					&& (game.selectedCar === null)){
 
-					// console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
-
-					// Then add what I clicked to selectedCar
-					game.selectedCar = game.cars[i];
+					game.selectedCar = game.cars[i];					// Then add what I clicked to selectedCar
 			
-					// console.log("Selected car: " + game.selectedCar.carLetter);
-
-				// If what I clicked on is a car and is THE SAME as selected
-				} else if ((game.cars[i].carSquares[j].x == xValue) 
+				} else if ((game.cars[i].carSquares[j].x == xValue) 	// If what I clicked on is a car and selectedCar is empty
 					&& (game.cars[i].carSquares[j].y == yValue) 
 					&& (game.selectedCar === game.cars[i])){
 
-					// console.log("Deselected car " + game.selectedCar.carLetter);
+					$(".square").css("border", "");						// Reset CSS
 
-					// Reset CSS
-					$(".square").css("border", "");
-
-					// Remove car from selectedCar (deselect it)
-					game.selectedCar = null;
+					game.selectedCar = null;							// Remove car from selectedCar (deselect it)
 				}
 			}
 		}
@@ -511,39 +476,31 @@ const game = {
 			let yValue = selectedCar.carSquares[i].y;
 			let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
 
-			// console.log("x: " + xValue + ", y: " + yValue);
 			$theSquare.css("border", "1px solid black");
 		}
 	},
 
 
-	/***************************************** When click on a square, check if free *************************************/
+	/************************************** When click on a square to move, check if free **********************************/
 
-	isSquareFree(x, y) {
+	isSquareFree(x, y) {					// Check if there's a car (i.e. one of its squares) that has (x, y) coordinates
 
-		// Figure out distance between car and square
-
-		// Check if there's a car
 		for (let i = 0; i < game.cars.length; i++){
 			
 			for (let j = 0; j < game.cars[i].carSquares.length; j++){
 			
-				// If this squares x and this squares y are eq to x and y param
 				if ((game.cars[i].carSquares[j].x == x) && (game.cars[i].carSquares[j].y == y)){
-					// console.log(`This square is occupied!`);
 					return false;
 				}
 			}
 		}
 
-		// Check if theres a wall
-		if ((x == 0) || (y == 0) || (x == 7) || ((y == 7) && (x != 3))){
+		if ((x == 0) || (y == 0) || (x == 7) || ((y == 7) && (x != 3))){		// Check if theres a wall
 			$('#message').html("<p>Hmmm. . . <br/>That . . . is a wall.<br/><br/><br/>&#x28;&#xFF89;&#x25D5;&#x30EE;&#x25D5;&#x29;&#xFF89;&#x2A;&#x3A;&#xFF65;&#xFF9F;&#x2727;</p>").css("text-align", "center");
 
 			return false;
 		}
 
-		// console.log(`This square is free!`);
 		return true;
 	},
 
@@ -565,7 +522,7 @@ const game = {
 		}
 	},
 
-	/***************************************** Move the selected car *************************************/
+	/***************************************** You WIN! *************************************/
 
 	youWin(){
 
@@ -575,8 +532,9 @@ const game = {
 		}
 	},
 
-	/************************************** Highlight available squares when car is selected **********************************/
-						/***************************************** Optional *************************************/
+	/////////////////////////////////// UPCOMING FEATURES ///////////////////////////////////
+	
+	/************************* Highlight available squares when car is selected *************************/
 
 	showAvailSq(car) {
 		// if horiz
@@ -590,7 +548,6 @@ const game = {
 				// highlight(that square)
 			// isSquareFree(that square on the bottom)
 				// highlight(that square)
-
 	},
 
 
@@ -598,18 +555,13 @@ const game = {
 };
 
 
-/****************************************************************************************************
-*****************************************************************************************************/
 
-
-
-
-
-
-
+/*****************************************************************************************************************/
 /*****************************************************************************************************************
 										EVENT LISTENERS
 ******************************************************************************************************************/
+/*****************************************************************************************************************/
+
 
 /******************************************************* Elements Slide In *****************************/
 
@@ -622,7 +574,7 @@ $('#level').velocity("transition.slideRightIn", { display: null });
 $('#map').velocity("transition.slideUpIn", { display: null });
 
 
-/************************************** Level Messages **********************************/
+/***************************************************** Level Messages **********************************/
 
 const levelMessages = () => {
 	if (game.currentLevel === 3){
@@ -634,6 +586,7 @@ const levelMessages = () => {
 };
 
 
+/********************************************************************************************************/
 /************************************************ START GAME ********************************************/
 /********************************************************************************************************/
 
@@ -661,7 +614,7 @@ $('#start').on('click', () => {
 	$('#message p').velocity("transition.slideLeftOut");
 
 
-	/************************************************ Next Level Button **********************************/
+	/****************************************************** Next Level Button ****************************/
 
 	$('#level').append("<button id='nextLevel'>Next Level</button>");
 
@@ -669,7 +622,7 @@ $('#start').on('click', () => {
 
 		if (game.youWin()){										// If player beat this level
 
-			$('#message').html("<p></p>");								// Remove Instructions
+			$('#message').html("<p></p>");						// Remove Instructions
 
 			game.clearColour();									// Clear the board
 
@@ -752,8 +705,9 @@ $('#start').on('click', () => {
 
 
 
-
-/************************************** Play Game **********************************/
+/********************************************************************************************************/
+/************************************************* PLAY GAME ********************************************/
+/********************************************************************************************************/
 
 $('.square').on('click', (e) => {
 
@@ -783,52 +737,9 @@ $('.square').on('click', (e) => {
 
 
 
-
-// <div id="car-sq" data-x="3" data-y="6">
-// e.currentTarget.dataset.x = 7
-// $(e.currentTarget).data('x', 6)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**************************************************************************************************************
+***************************************************************************************************************
+***************************************************** - FIN - *************************************************
+***************************************************************************************************************
+***************************************************************************************************************/
 
