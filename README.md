@@ -1,22 +1,26 @@
+~~~~~~
+~~~~~~
 ---------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------
----------------------------------------------- P R O J E C T - 1 ----------------------------------------------
+# ///// P R O J E C T - 1 /////
 ---------------------------------------------------------------------------------------------------------------
+~~~~~~
+~~~~~~
 ---------------------------------------------------------------------------------------------------------------
--------------------------------------------------- RUSH HOUR --------------------------------------------------
+## ///// RUSH HOUR /////
 ---------------------------------------------------------------------------------------------------------------
 
 A puzzle game where the user is able to shift cars on a grid, horizontally and vertically depending on their length/direction. 
 The goal of the game is to shift the cars in an order/way for the "master" car to be able to escape the traffic jam.
 
 
-
 -----------------> GAME LINK --> https://charlotteprevost.github.io/project-1/ <-- GAME LINK <-----------------
 
 
-
+~~~~~~
+~~~~~~
 ---------------------------------------------------------------------------------------------------------------
--------------------------------------------------- USER STORY -------------------------------------------------
+### ///// USER STORY /////
 ---------------------------------------------------------------------------------------------------------------
 
 • User arrives on page
@@ -24,81 +28,80 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 • Sees empty grid in center of page
 • Sees Start Game button
 
-•	--> Clicks Start <--
-
+1.	--> Clicks Start <--
 • Cars appear on grid
 • Instructions on the page
 
-•	--> Clicks Car <--
-
+2.	--> Clicks Car <--
 • Car appears to be selected
 
-•	--> Clicks Empty Space <--
-
+3.	--> Clicks Empty Space <--
 • Car moves if possible
 
-•	--> Clicks Wall or Car <--
-
+4.	--> Clicks Wall or Car <--
 • Nothing happens
 
-•	--> Clicks/Moves Car to Exit
+5.	--> Clicks/Moves Car to Exit
 
-• Win!
+6. Win!
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+~~~~~~
 
 -->	Would ideally also like to implement:
 
-• Next levels with increased difficulty		// DONE
-• A Reset button 							// DONE
-• A move count (including the number of minimum possible moves one can use to solve the puzzles)
+1. Next levels with increased difficulty		// DONE
+2. A Reset button 								// DONE
+3. Adding sound effects with possibility to mute
+4. A move count (including the number of minimum possible moves one can use to solve the puzzles)
+
 
 ---------------------------------------------------------------------------------------------------------------
----------------------------------------------- CODE PRELIMINARIES ---------------------------------------------
+### ///// CODE PRELIMINARIES /////
 ---------------------------------------------------------------------------------------------------------------
 
-• 'Grid' loads on screen
-	- Level will be generated from an array containing arrays of strings
-	- Strings each have their own UNIQUE coordinates in the arrays
-	- Some strings share values
-	- Strings that share that value make up ONE car that will be stored in a cars array
+1. 'Grid' loads on screen
+	• Level will be generated from an array containing arrays of strings
+	• Strings each have their own UNIQUE coordinates in the arrays
+	• Some strings share values
+	• Strings that share that value make up ONE car that will be stored in a cars array
 
-• One square:
-	- class Square {}
-	- string value (will be rendered with colour)
-	- x
-	- y
-	- makeSquare(){}
-	- makeCar(){squares with same value will be objects pushed into an array, into an array of cars}
+2. One square:
+	• class Square {}
+	• string value (will be rendered with colour)
+	• x
+	• y
+	• makeSquare(){}
+	• makeCar(){squares with same value will be objects pushed into an array, into an array of cars}
 
-• One car
-	- One car = one array of squares, one square = one object
+3. One car
+	• One car = one array of squares, one square = one object
 
-• Move car
-	- To move a car, click on the car to select it (if change of mind, click on car again to deselect it)
-	- Check direction (are cars' squares x equal or y equal?)
-	- Check occupied (is there a car that has a square that is on that position?)
-	- If free, car moveable
-	- When valid area is clicked, car 'moves' in the selected area
+4. Move car
+	• To move a car, click on the car to select it (if change of mind, click on car again to deselect it)
+	• Check direction (are cars' squares x equal or y equal?)
+	• Check occupied (is there a car that has a square that is on that position?)
+	• If free, car moveable
+	• When valid area is clicked, car 'moves' in the selected area
 		--> car's squares' coordinates are updated
 
-• Possible movements:
-	- If one P is clicked, all Ps will be selected
-	- Check x and y
-	- Since both Ps have the same y-coord, get their x-coord
-	- P with lowest x-coord, check x - 1
-	- If empty, will be selectable
-	- P with highest x-coord, check x + 1
-	- If empty, will be selectable
-	- Once move area selected, update coordinates of each letter (x - 1 if x - 1 selected, x + 1 if x + 1 selected)
+5. Possible movements:
+	• If one P is clicked, all Ps will be selected
+	• Check x and y
+	• Since both Ps have the same y-coord, get their x-coord
+	• P with lowest x-coord, check x - 1
+	• If empty, will be selectable
+	• P with highest x-coord, check x + 1
+	• If empty, will be selectable
+	• Once move area selected, update coordinates of each letter (x - 1 if x - 1 selected, x + 1 if x + 1 selected)
 
-• Level Maps:
-	- The walls of the grid are shown with #
-	- Empty spaces are shown with .
-	- Cars' size and direction are shown with letters (YYY is a vertical car of length 3, PP is a horizontal car of length 2)
-	- The car that must be moved in order to win is @@
-	- The only opening in the wall (and only place @@ need to occupy to win is (7, -3))
+6. Level Maps:
+	• The walls of the grid are shown with #
+	• Empty spaces are shown with .
+	• Cars' size and direction are shown with letters (YYY is a vertical car of length 3, PP is a horizontal car of length 2)
+	• The car that must be moved in order to win is @@
+	• The only opening in the wall (and only place @@ need to occupy to win is (7, -3))
+
 
   0 1 2 3 4 5 6 7						 
 0 # # # # # # # #						 # # # # # # # #				In this example, a possible move order would be:
@@ -112,7 +115,7 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 
 
 ---------------------------------------------------------------------------------------------------------------
--------------------------------------------------- WIREFRAMES -------------------------------------------------
+### ///// WIREFRAMES /////
 ---------------------------------------------------------------------------------------------------------------
 
 ============================ UX ============================
