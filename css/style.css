@@ -11,11 +11,11 @@ h1 {
 	font-size: 80px;
 	margin-top: 30px;
 	margin-bottom: 30px;
-}
+	text-shadow: 6px 5px 5px #000000;}
 
 p {
 	color: lightgrey;
-	font-size: 25px;
+	font-size: 20px;
 }
 
 #main {
@@ -32,8 +32,8 @@ p {
 }
 
 .square {
-	border: 1px solid lightgrey;
-	background-color: darkgrey;
+	border: 1px solid white;
+	background-color: lightgrey;
 	width: 50px;
 	height: 50px;
 	margin: 1px;
@@ -64,33 +64,47 @@ p {
 }
 
 .wall {
-	background-color: #79170A;
+	background-image: url("images/mario-brick.png");
+	/*background-color: #79170A;*/
 	border: 1px solid #79170A;
 
 }
 
 #level {
-	display: grid;
-	margin: 0 auto;
-	align-content: baseline;
+    display: grid;
+    margin: 0 auto;
+    align-content: space-around;
+    width: 350px;
 }
 
 #message {
 	font-family: 'Dosis', sans-serif;
-	width: 250px;
+	width: 350px;
 	margin: 0 auto;
 	text-align: left;
+	padding: 15px;
 }
 
 button {
-	/*font-family: 'Dosis', sans-serif;*/
+	font-family: 'Dosis', sans-serif;
 	width: 104px;
 	height: 52px;
 	font-size: 15px;
 	border-radius: 10px;
+	margin: auto;
 }
 
+#instructions {
+    font-family: 'Dosis', sans-serif;
+    width: 104px;
+    height: 25px;
+    font-size: 12px;
+    border-radius: 10px;	
+}
 
+span {
+	color: #E74C3C;
+}
 
 
 

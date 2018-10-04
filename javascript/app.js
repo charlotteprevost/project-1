@@ -163,8 +163,8 @@ const game = {
 	carString: ["A","B","C","D","E","F","G","H","I","J","K","L","M",
 				"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 
-	colourString: ["#E74C3C", "#3498DB", "#58D68D", "#A569BD", "#F4D03F", "#F5B041", "#AED6F1", "#FFC0CB", "#1E8449 "], 
-					/*red, blue, green, purple, yellow, orange, light blue, pink, dark green*/
+	colourString: ["#E74C3C", "#3949AB", "#2ECC71", "#A569BD", "#F4D03F", "#F5B041", "#90CAF9", "#EF9A9A", "#1E8449", "#AFB42B", "#0097A7", "#8E24AA", "#EC407A"], 
+					/*red, 		blue, 	   green, 	 purple, 	yellow,    orange,  light blue,    pink,   dark green,  olive,	   teal*/
 
 	squares: [],
 
@@ -173,6 +173,8 @@ const game = {
 	cars: [],
 
 	selectedCar: null,
+
+	currentLevel: 0,
 
 	levels: [
 		{	level: 0,//					Y VALUES			
@@ -189,36 +191,36 @@ const game = {
 		},{	level: 1,//					Y VALUES			
 			map: [	//	<-------------------------------------->
 						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
-						["#", ".", ".", "C", "C", "C", "D", "#"],	//	|
-						["#", ".", ".", "B", ".", ".", "D", "#"],	//	|
-						["#", "A", "A", "B", ".", ".", "D", "$"],	//	|
-						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|	X VALUES
-						["#", ".", ".", "F", "F", "E", "E", "#"],	//	|
-						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "C", "C", "C", "D", "E", "F", "#"],	//	|
+						["#", ".", ".", "B", "D", "E", "F", "#"],	//	|
+						["#", "A", "A", "B", ".", ".", ".", "$"],	//	|
+						["#", "H", "H", "H", ".", ".", ".", "#"],	//	|	X VALUES
+						["#", "I", "J", "J", "G", "G", "G", "#"],	//	|
+						["#", "I", ".", ".", ".", ".", ".", "#"],	//	|
 						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
 			]
 
 		},{	level: 2,//					Y VALUES			
 			map: [	//	<-------------------------------------->
 						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
-						["#", ".", ".", "C", "C", "C", "D", "#"],	//	|
-						["#", ".", ".", "B", ".", ".", "D", "#"],	//	|
-						["#", "A", "A", "B", ".", ".", "D", "$"],	//	|
-						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|	X VALUES
-						["#", ".", ".", "F", "F", "E", "E", "#"],	//	|
-						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "B", "B", "C", "C", "D", "E", "#"],	//	|
+						["#", "G", ".", "F", "F", "D", "E", "#"],	//	|
+						["#", "G", "A", "A", "H", ".", ".", "$"],	//	|
+						["#", "G", ".", "L", "H", "I", "I", "#"],	//	|	X VALUES
+						["#", ".", ".", "L", "K", "J", "J", "#"],	//	|
+						["#", "M", "M", "M", "K", ".", ".", "#"],	//	|
 						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
 			]
 
 		},{	level: 3,//					Y VALUES			
 			map: [	//	<-------------------------------------->
 						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
-						["#", ".", ".", "C", "C", "C", "D", "#"],	//	|
-						["#", ".", ".", "B", ".", ".", "D", "#"],	//	|
-						["#", "A", "A", "B", ".", ".", "D", "$"],	//	|
-						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|	X VALUES
-						["#", ".", ".", "F", "F", "E", "E", "#"],	//	|
-						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "B", "B", "D", "E", "F", "F", "#"],	//	|
+						["#", "C", "C", "D", "E", "G", "H", "#"],	//	|
+						["#", "I", ".", "A", "A", "G", "H", "$"],	//	|
+						["#", "I", "J", "J", "J", "K", ".", "#"],	//	|	X VALUES
+						["#", "I", ".", ".", ".", "K", ".", "#"],	//	|
+						["#", ".", ".", ".", ".", "L", "L", "#"],	//	|
 						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
 			]
 
@@ -270,6 +272,7 @@ const game = {
 
 		$('.square').css("background-color", "");
 
+		$('.square:not(.wall)').css({"border-radius": "0"});
 		// Replace car in the cars array with the selected car with updated coordinates
 		for (let i = 0; i < game.cars.length; i++){
 
@@ -293,6 +296,7 @@ const game = {
 
 	colourCars(){
 
+
 		for (let i = 0; i < game.cars.length; i++){
 
 			for (let j = 0; j < game.cars[i].carSquares.length; j++){
@@ -304,14 +308,55 @@ const game = {
 				let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
 
 				$theSquare.css("background-color", game.colourString[i]);
+
+
+
+				if ((game.cars[i].direction === "horizontal") && (j === 0)){
+
+					$theSquare.css({"border-top-left-radius": "10px", "border-bottom-left-radius": "10px"});
+
+				} else if ((game.cars[i].direction === "horizontal") && (j === (game.cars[i].carSquares.length)-1)){
+
+					$theSquare.css({"border-top-right-radius": "10px", "border-bottom-right-radius": "10px"});
+
+				} else if ((game.cars[i].direction === "vertical") && (j === 0)){
+
+					$theSquare.css({"border-top-left-radius": "10px", "border-top-right-radius": "10px"});
+
+				 }else if ((game.cars[i].direction === "vertical") && (j === (game.cars[i].carSquares.length)-1)){
+
+					$theSquare.css({"border-bottom-left-radius": "10px", "border-bottom-right-radius": "10px"});
+				}
 			}
 		}
 	},
 
+		// ************************************ Clear colours for next game ********************************
+
+	clearColour(){
+
+		for (let i = 0; i < game.cars.length; i++){
+
+			for (let j = 0; j < game.cars[i].carSquares.length; j++){
+	
+				let xValue = game.cars[i].carSquares[j].x;
+
+				let yValue = game.cars[i].carSquares[j].y;
+
+				let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
+
+				$theSquare.css("background-color", "lightgrey");
+			}
+		}
+
+		// $(".square").css({"border": "", "border-radius": 0});
+	},
+
+
 
 	/*********************************************** Set car grid direction *******************************************/
-
 	setDirection(){
+
 		
 		for (let i = 0; i < game.cars.length; i++){			
 
@@ -372,7 +417,7 @@ const game = {
 
 	/***************************************** Set/Reset CSS when car selected/unselected *************************************/
 
-	borderColourSelect(selectedCar){ 		console.log("set borderColour");
+	borderColourSelect(selectedCar){
 
 		$(".square").css("border", "");
 
@@ -411,7 +456,7 @@ const game = {
 
 		// Check if theres a wall
 		if ((x == 0) || (y == 0) || (x == 7) || ((y == 7) && (x != 3))){
-			$('#message').html("<p>Hmmm. . . That . . . is a wall.<br/><br/><br/>&#x28;&#xFF89;&#x25D5;&#x30EE;&#x25D5;&#x29;&#xFF89;&#x2A;&#x3A;&#xFF65;&#xFF9F;&#x2727;</p>").css("text-align", "center");
+			$('#message').html("<p>Hmmm. . . <br/>That . . . is a wall.<br/><br/><br/>&#x28;&#xFF89;&#x25D5;&#x30EE;&#x25D5;&#x29;&#xFF89;&#x2A;&#x3A;&#xFF65;&#xFF9F;&#x2727;</p>").css("text-align", "center");
 
 			return false;
 		}
@@ -470,13 +515,7 @@ const game = {
 
 };
 
-game.makeSquares(0);			// Stored in game.squares
-game.makeCars();				// Stored in game.cars
-game.colourCars();
-game.setDirection();
 
-// console.log(game.cars);
-// console.log($(".square"));
 /****************************************************************************************************
 *****************************************************************************************************/
 
@@ -490,11 +529,82 @@ game.setDirection();
 										EVENT LISTENERS
 *****************************************************************************************************/
 
+/************************************** Start Game **********************************/
 
-// Each div will have a .square, a data-x="", and a data-y=""
+$('#start').on('click', () => {
+
+	/********************************* Make the Board *****************************/
+
+	game.makeSquares(0);			
+	game.makeCars();
+	game.setDirection();
+	game.colourCars();
+
+	/********************************* Show Level *****************************/
+
+	$('#level p').html("Tutorial Level.<br/>Let's warm up!")	// Update screen
+
+	/********************************* Hide/Show Instructions *****************************/
+
+	let click = 1;
+
+	$('#message').html("<button id='instructions'>Hide Instructions</button>");		// Make instructions button
+
+	const $instructionsText = $("<p>&#x2022; Click on car &#x2192; select car<br/>&#x2022; Click on empty spot &#x2192; move car<br/>&#x2022; Click on car again &#x2192; deselect car<br/>&#x2022; Horizontal cars can only move left/right<br/>&#x2022; Vertical cars can only move up/down<br/><br/>Get your <span>red</span> ride out of this traffic jam!</p>")
+
+	$('#message').append($instructionsText);		// Add instructions
+
+	$('#message p').css("font-size", "19px");	
+
+	$('#instructions').on('click', () => {			// Toggle Show/Hide Instructions
+		console.log("clickyckicl");
+
+		if (click % 2 === 0){
+			$('#message p').show();
+			$('#message button').text("Hide Instructions");
+		} else {
+			$('#message p').hide();
+			$('#message button').text("Show Instructions");
+		}
+
+		click++;
+
+	});
+
+
+	$('#start').remove();
+
+	/********************************* Reset Game *****************************/
+
+	$('#level').prepend("<button id='reset'>Reset</button>");
+
+	$('#reset').on('click', () => {
+
+			// Clear the board
+			game.clearColour();
+
+			if (game.currentLevel === 0){
+				$('#level p').html("Tutorial Level.<br/><br/>Let's warm up!")	// Update screen
+	
+			} else {		
+				$('#level p').text("Level: " + game.currentLevel)
+			}
+
+			game.squares = [];
+			game.cars = [];
+			game.selectedCar = null;
+
+			game.makeSquares(game.currentLevel);			
+			game.makeCars();				
+			game.setDirection();
+			game.colourCars();
+
+	});
+});
 
 
 
+/************************************** Play Game **********************************/
 
 $('.square').on('click', (e) => {
 
@@ -514,16 +624,35 @@ $('.square').on('click', (e) => {
 		game.moveSelectedCar(x, y);
 		game.updateCars();	
 	}
-	console.log(game.cars);
+
 	game.youWin();
 });
 
 
+/************************************** Next Level **********************************/
+
 $('#nextLevel').on('click', () => {
 
-	if (game.youWin()){
+	if (game.youWin()){										// If player beat this level
+		console.log("Click");
 
-		console.log('button works');
+		$('#message p').hide();								// Remove Instructions
+
+		game.clearColour();									// Clear the board
+
+		game.currentLevel++;								// Level UP!
+
+		$('#level p').text("Level: " + game.currentLevel)	// 
+
+		game.squares = [];
+		game.cars = [];
+		game.selectedCar = null;
+
+		game.makeSquares(game.currentLevel);			
+		game.makeCars();				
+		game.setDirection();
+		game.updateCars();
+		game.borderColourSelect();
 	}
 
 });
