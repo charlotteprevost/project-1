@@ -122,7 +122,7 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 
 ---
 
-
+```
 <--------------- USER SCREEN --------------->
 +-------------------------------------------+ +------------------------------------------+
 |                                           | |                                          |
@@ -139,7 +139,7 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 |                                           | |                                          |
 |                                           | |                                          |
 +-------------------------------------------+ +------------------------------------------+
-
+```
 
 
 
