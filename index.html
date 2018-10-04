@@ -3,13 +3,17 @@
 <head>
 	<!-- JQUERY -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-	
+
+	<!-- VELOCITY -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.0.0/velocity.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.0.0/velocity.ui.min.js"></script>
+
 	<!-- LINK STYLE -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<!-- FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Trade+Winds|Dosis:500" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css?family=Londrina+Solid:300|Racing+Sans+One|Skranji" rel="stylesheet">
 	
 	<title>Rush Hour</title>
 </head>
@@ -20,7 +24,9 @@
 	<div id="main">
 		
 		<div id="message">
-			<p>You're riding your smokin' red lamborghini to class but you're stuck in a traffic jam. . .<br/><br/>Slide the cars horizontally or vertically and get yourself out of there!<br/><br/>And. . . . . . No.<br/>Drifting is <i>not</i> permitted.</p>
+			<hr/>
+			<p>You're riding your smokin' <span id="red">red</span> lamborghini to class but you're stuck in a traffic jam. . .<br/><br/>Slide the cars horizontally or vertically and get yourself out of there!<br/><br/>And. . . . . . No.<br/>Drifting is <i>not</i> permitted.</p>
+			<hr/>
 		</div>
 
 		<div id="map">
@@ -59,7 +65,7 @@
 			<div class="square" data-x="3" data-y="4"></div>
 			<div class="square" data-x="3" data-y="5"></div>
 			<div class="square" data-x="3" data-y="6"></div>
-			<div class="square" id="exit" data-x="3" data-y="7"><img></div>
+			<div class="square" id="exit" data-x="3" data-y="7">&#x2192;<br/>EXIT</div>
 
 			<div class="square wall" data-x="4" data-y="0"></div>
 			<div class="square" data-x="4" data-y="1"></div>
@@ -102,8 +108,8 @@
 
 		<div id="level">
 			<button id="start">Start game</button>
-			<p></p>
-			<button id="nextLevel">Next Level</button>
+			<!-- <p></p> -->
+			<!-- <button id="nextLevel">Next Level</button> -->
 		</div>
 
 	</div>

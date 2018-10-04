@@ -87,7 +87,7 @@ class Car {
 		if (game.selectedCar.direction === "horizontal"){								
 
 			// If empty square to move to is to the RIGHT 	
-			if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].y < toY && game.isSquareFree(toX, (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].y+1))){			console.log("Move right");
+			if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].y < toY && game.isSquareFree(toX, (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].y+1))){
 
 				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
 
@@ -96,7 +96,7 @@ class Car {
 				}
 
 			// If empty square to move to is to the LEFT
-			} else if (game.selectedCar.carSquares[0].y > toY && game.isSquareFree(toX, (game.selectedCar.carSquares[0].y-1))){										console.log("Move left");
+			} else if (game.selectedCar.carSquares[0].y > toY && game.isSquareFree(toX, (game.selectedCar.carSquares[0].y-1))){
 
 				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
 
@@ -111,7 +111,7 @@ class Car {
 		} else if (game.selectedCar.direction === "vertical"){
 
 			// If empty square to move to is ABOVE
-			if (game.selectedCar.carSquares[0].x > toX && game.isSquareFree((game.selectedCar.carSquares[0].x-1), toY)){	console.log("Move up");
+			if (game.selectedCar.carSquares[0].x > toX && game.isSquareFree((game.selectedCar.carSquares[0].x-1), toY)){
 				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
 
 					// x-- for all squares
@@ -122,7 +122,7 @@ class Car {
 
 
 			// If empty square to move to is BELOW
-			} else if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x < toX && game.isSquareFree((game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x+1), toY)){										console.log("Move down");
+			} else if (game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x < toX && game.isSquareFree((game.selectedCar.carSquares[game.selectedCar.carSquares.length-1].x+1), toY)){
 				for (let i = 0; i < game.selectedCar.carSquares.length; i++){
 
 					// x++ for all squares
@@ -133,7 +133,7 @@ class Car {
 			}
 			
 		}
-			console.log("Selected car: " + game.selectedCar.carLetter);
+			// console.log("Selected car: " + game.selectedCar.carLetter);
 	}
 
 }
@@ -221,6 +221,90 @@ const game = {
 						["#", "I", "J", "J", "J", "K", ".", "#"],	//	|	X VALUES
 						["#", "I", ".", ".", ".", "K", ".", "#"],	//	|
 						["#", ".", ".", ".", ".", "L", "L", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 4,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", ".", ".", "B", "B", "C", "C", "#"],	//	|
+						["#", ".", ".", "D", "E", "E", "E", "#"],	//	|
+						["#", "A", "A", "D", ".", ".", "F", "$"],	//	|
+						["#", "G", "H", "H", "I", "I", "F", "#"],	//	|	X VALUES
+						["#", "G", ".", ".", "J", ".", "F", "#"],	//	|
+						["#", "G", "L", "L", "J", "K", "K", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 5,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", "B", "C", "D", "D", "G", "H", "#"],	//	|
+						["#", "B", "C", "E", "F", "G", "H", "#"],	//	|
+						["#", "A", "A", "E", "F", "J", "I", "$"],	//	|
+						["#", "M", "M", "L", "K", "J", "I", "#"],	//	|	X VALUES
+						["#", ".", ".", "L", "K", "J", ".", "#"],	//	|
+						["#", ".", ".", ".", ".", ".", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 6,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", "B", "B", "B", ".", "C", "D", "#"],	//	|
+						["#", ".", ".", "J", ".", "C", "D", "#"],	//	|
+						["#", "A", "A", "J", ".", ".", "E", "$"],	//	|
+						["#", "K", "K", "I", ".", ".", "E", "#"],	//	|	X VALUES
+						["#", "L", "H", "I", ".", "F", "F", "#"],	//	|
+						["#", "L", "H", "G", "G", "G", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 7,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", "B", "C", "D", "D", "E", "E", "#"],	//	|
+						["#", "B", "C", "F", "F", "F", "G", "#"],	//	|
+						["#", "A", "A", "I", ".", ".", "G", "$"],	//	|
+						["#", "J", ".", "I", "H", "H", "G", "#"],	//	|	X VALUES
+						["#", "J", "L", "L", "L", "M", ".", "#"],	//	|
+						["#", "K", "K", ".", ".", "M", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 8,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", "B", ".", "C", "C", "C", "D", "#"],	//	|
+						["#", "B", "L", "L", "K", "J", "D", "#"],	//	|
+						["#", "A", "A", "M", "K", "J", "E", "$"],	//	|
+						["#", "N", "N", "M", "I", "J", "E", "#"],	//	|	X VALUES
+						["#", ".", ".", ".", "I", "F", "F", "#"],	//	|
+						["#", ".", "H", "H", "G", "G", ".", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 9,//					Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", "B", "B", "B", "C", "D", "E", "#"],	//	|
+						["#", "L", "M", "M", "C", "D", "E", "#"],	//	|
+						["#", "L", ".", "A", "A", "D", "E", "$"],	//	|
+						["#", "K", "K", "J", ".", ".", ".", "#"],	//	|	X VALUES
+						["#", ".", "I", "J", "F", "F", ".", "#"],	//	|
+						["#", ".", "I", "H", "H", "G", "G", "#"],	//	|
+						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
+			]
+
+		},{	level: 10,//				Y VALUES			
+			map: [	//	<-------------------------------------->
+						["#", "#", "#", "#", "#", "#", "#", "#"],   //	^
+						["#", "B", "C", "C", "C", ".", ".", "#"],	//	|
+						["#", "B", "D", "D", "D", ".", "I", "#"],	//	|
+						["#", "A", "A", "F", "G", "H", "I", "$"],	//	|
+						["#", "E", "E", "F", "G", "H", "I", "#"],	//	|	X VALUES
+						["#", ".", ".", ".", "K", "J", "J", "#"],	//	|
+						["#", ".", "L", "L", "K", ".", ".", "#"],	//	|
 						["#", "#", "#", "#", "#", "#", "#", "#"]	// 	v
 			]
 
@@ -390,19 +474,19 @@ const game = {
 					&& (game.cars[i].carSquares[j].y == yValue) 
 					&& (game.selectedCar === null)){
 
-					console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
+					// console.log(`x: ${xValue}, y: ${yValue} --> clicked`);
 
 					// Then add what I clicked to selectedCar
 					game.selectedCar = game.cars[i];
 			
-					console.log("Selected car: " + game.selectedCar.carLetter);
+					// console.log("Selected car: " + game.selectedCar.carLetter);
 
 				// If what I clicked on is a car and is THE SAME as selected
 				} else if ((game.cars[i].carSquares[j].x == xValue) 
 					&& (game.cars[i].carSquares[j].y == yValue) 
 					&& (game.selectedCar === game.cars[i])){
 
-					console.log("Deselected car " + game.selectedCar.carLetter);
+					// console.log("Deselected car " + game.selectedCar.carLetter);
 
 					// Reset CSS
 					$(".square").css("border", "");
@@ -427,9 +511,7 @@ const game = {
 			let yValue = selectedCar.carSquares[i].y;
 			let $theSquare = $(".square[data-x=" + xValue + "][data-y=" + yValue + "]");
 
-			console.log("x: " + xValue + ", y: " + yValue);
-
-			// $theSquare.attr("selected", true);
+			// console.log("x: " + xValue + ", y: " + yValue);
 			$theSquare.css("border", "1px solid black");
 		}
 	},
@@ -448,7 +530,7 @@ const game = {
 			
 				// If this squares x and this squares y are eq to x and y param
 				if ((game.cars[i].carSquares[j].x == x) && (game.cars[i].carSquares[j].y == y)){
-					console.log(`This square is occupied!`);
+					// console.log(`This square is occupied!`);
 					return false;
 				}
 			}
@@ -461,7 +543,7 @@ const game = {
 			return false;
 		}
 
-		console.log(`This square is free!`);
+		// console.log(`This square is free!`);
 		return true;
 	},
 
@@ -472,12 +554,12 @@ const game = {
 
 		if ((game.selectedCar.direction === "horizontal") && (x == game.selectedCar.carSquares[0].x)) {
 
-			console.log("moveSelectedCar");
+			// console.log("moveSelectedCar");
 			game.selectedCar.move(x, y);
 		
 		} else if ((game.selectedCar.direction === "vertical") && (y == game.selectedCar.carSquares[0].y)){
 
-			console.log("moveSelectedCar");
+			// console.log("moveSelectedCar");
 			game.selectedCar.move(x, y);
 
 		}
@@ -487,7 +569,7 @@ const game = {
 
 	youWin(){
 
-		if (game.selectedCar.carSquares[1].y === 7){
+		if (game.selectedCar.carSquares[1].y === 7 && game.selectedCar !== null){
 			$('#message').html("<p>You win !<br/><br/> &#xFF3C;&#xFF3C;&#x5C;&#x5C;&#x20;&#x669;&#x28;&#x25D5;&#x30EE;&#x25D5;&#x29;&#x648;&#x20;&#x2F;&#x2F;&#xFF0F;&#xFF0F;</p>").css("text-align", "center");
 			return true;
 		}
@@ -525,45 +607,134 @@ const game = {
 
 
 
-/****************************************************************************************************
+/*****************************************************************************************************************
 										EVENT LISTENERS
-*****************************************************************************************************/
+******************************************************************************************************************/
 
-/************************************** Start Game **********************************/
+/******************************************************* Elements Slide In *****************************/
+
+$('#message p, hr').velocity("transition.slideLeftIn");
+
+$('h1').velocity("transition.slideDownIn");
+
+$('#level').velocity("transition.slideRightIn", { display: null });
+
+$('#map').velocity("transition.slideUpIn", { display: null });
+
+
+/************************************** Level Messages **********************************/
+
+const levelMessages = () => {
+	if (game.currentLevel === 3){
+		$('#message').html("<p>Let's turn up the heat a little!<br/><br/>&#x3C8;&#x28;&#x20;&#x60;&#x20;&#x3C9;&#x20;&#xB4;&#x20;&#x29;&#x3C8;</p>")
+
+	} else if (game.currentLevel === 6){
+		$('#message').html("<p>You're getting good at this!<br/><br/>Try... THIS!!<br/><br/>&#x5F;&#x28;&#x3A;&#x33;&#x20;&#x300D;&#x2220;&#x29;&#x5F;</p>")
+	}
+};
+
+
+/************************************************ START GAME ********************************************/
+/********************************************************************************************************/
 
 $('#start').on('click', () => {
 
-	/********************************* Make the Board *****************************/
+	let click = 1;
+
+	/******************************************************* Make the Board *****************************/
 
 	game.makeSquares(0);			
 	game.makeCars();
 	game.setDirection();
 	game.colourCars();
 
-	/********************************* Show Level *****************************/
+	$('#map div').velocity("transition.flipYIn", { display: null });
 
-	$('#level p').html("Tutorial Level.<br/>Let's warm up!")	// Update screen
 
-	/********************************* Hide/Show Instructions *****************************/
+	/************************************************************** Tutorial *****************************/
 
-	let click = 1;
+	$('#level').html("<p>Tutorial Level.<br/><br/>Let's warm up!</p>").velocity("transition.slideRightIn", { display: null });
+
+
+	/****************************************************** Story Slides Out *****************************/
+
+	$('#message p').velocity("transition.slideLeftOut");
+
+
+	/************************************************ Next Level Button **********************************/
+
+	$('#level').append("<button id='nextLevel'>Next Level</button>");
+
+	$('#nextLevel').on('click', () => {
+
+		if (game.youWin()){										// If player beat this level
+
+			$('#message').html("<p></p>");								// Remove Instructions
+
+			game.clearColour();									// Clear the board
+
+			game.currentLevel++;								// Level UP!
+
+			$('#level p').text("Level: " + game.currentLevel)	// Update level on screen
+
+			game.squares = [];
+			game.cars = [];
+			game.selectedCar = null;
+
+			game.makeSquares(game.currentLevel);			
+			game.makeCars();				
+			game.setDirection();
+			game.updateCars();
+			game.borderColourSelect();
+	
+			levelMessages();
+		}
+
+	});
+
+
+	/***************************************************** Reset Game Button *****************************/
+
+	$('#level').prepend("<button id='reset'>Reset</button>");
+
+	$('#reset').on('click', () => {
+
+		// Clear the board
+		game.clearColour();
+
+		game.squares = [];
+		game.cars = [];
+		game.selectedCar = null;
+
+		game.makeSquares(game.currentLevel);			
+		game.makeCars();				
+		game.setDirection();
+		game.colourCars();
+
+		$('#level p').text("Level: " + game.currentLevel)
+
+		levelMessages();
+
+	});
+
+
+	/************************************************* Hide/Show Instructions *****************************/
 
 	$('#message').html("<button id='instructions'>Hide Instructions</button>");		// Make instructions button
 
-	const $instructionsText = $("<p>&#x2022; Click on car &#x2192; select car<br/>&#x2022; Click on empty spot &#x2192; move car<br/>&#x2022; Click on car again &#x2192; deselect car<br/>&#x2022; Horizontal cars can only move left/right<br/>&#x2022; Vertical cars can only move up/down<br/><br/>Get your <span>red</span> ride out of this traffic jam!</p>")
+	const $instructionsText = $("<p>&#x2022; Click on car &#x2192; select car<br/>&#x2022; Click on empty spot &#x2192; move car<br/>&#x2022; Click on car again &#x2192; deselect car<br/>&#x2022; Horizontal cars can only move left/right<br/>&#x2022; Vertical cars can only move up/down<br/><br/>Get your <span id='red'>red</span> ride out of this traffic jam!</p>");
 
 	$('#message').append($instructionsText);		// Add instructions
-
-	$('#message p').css("font-size", "19px");	
+	$('#message p').css("font-size", "19px");
+	$('#message p').velocity("transition.slideDownIn");
 
 	$('#instructions').on('click', () => {			// Toggle Show/Hide Instructions
-		console.log("clickyckicl");
 
 		if (click % 2 === 0){
-			$('#message p').show();
+			$('#message p').velocity("transition.slideDownIn");
 			$('#message button').text("Hide Instructions");
 		} else {
-			$('#message p').hide();
+			$('#message p').velocity("transition.slideUpOut");
 			$('#message button').text("Show Instructions");
 		}
 
@@ -574,33 +745,11 @@ $('#start').on('click', () => {
 
 	$('#start').remove();
 
-	/********************************* Reset Game *****************************/
+	$('button').velocity("transition.expandIn");
 
-	$('#level').prepend("<button id='reset'>Reset</button>");
 
-	$('#reset').on('click', () => {
+}); // ---------- ---------- ---------- END OF START CLICK ---------- ---------- ---------- //
 
-			// Clear the board
-			game.clearColour();
-
-			if (game.currentLevel === 0){
-				$('#level p').html("Tutorial Level.<br/><br/>Let's warm up!")	// Update screen
-	
-			} else {		
-				$('#level p').text("Level: " + game.currentLevel)
-			}
-
-			game.squares = [];
-			game.cars = [];
-			game.selectedCar = null;
-
-			game.makeSquares(game.currentLevel);			
-			game.makeCars();				
-			game.setDirection();
-			game.colourCars();
-
-	});
-});
 
 
 
@@ -613,7 +762,10 @@ $('.square').on('click', (e) => {
 	const y = e.currentTarget.dataset.y;
 
 	game.toggleSelect(x, y);
-	if (game.selectedCar !== null){game.borderColourSelect(game.selectedCar);};
+	if (game.selectedCar !== null){
+	
+		game.borderColourSelect(game.selectedCar);
+	};
 
 	
 	if (game.selectedCar !== null && game.isSquareFree(x, y)) {
@@ -623,39 +775,14 @@ $('.square').on('click', (e) => {
 		// Move selected car if possible
 		game.moveSelectedCar(x, y);
 		game.updateCars();	
-	}
 
-	game.youWin();
-});
-
-
-/************************************** Next Level **********************************/
-
-$('#nextLevel').on('click', () => {
-
-	if (game.youWin()){										// If player beat this level
-		console.log("Click");
-
-		$('#message p').hide();								// Remove Instructions
-
-		game.clearColour();									// Clear the board
-
-		game.currentLevel++;								// Level UP!
-
-		$('#level p').text("Level: " + game.currentLevel)	// 
-
-		game.squares = [];
-		game.cars = [];
-		game.selectedCar = null;
-
-		game.makeSquares(game.currentLevel);			
-		game.makeCars();				
-		game.setDirection();
-		game.updateCars();
-		game.borderColourSelect();
+		game.youWin();
 	}
 
 });
+
+
+
 
 // <div id="car-sq" data-x="3" data-y="6">
 // e.currentTarget.dataset.x = 7

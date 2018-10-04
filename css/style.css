@@ -1,8 +1,8 @@
 body {
-	font-family: 'Dosis', sans-serif;
 	background-color: rgb(34, 34, 34);
 	text-align: center;
 	color: #79170A;
+	font-family: 'Londrina Solid', cursive;
 }
 
 
@@ -13,8 +13,9 @@ h1 {
 	margin-bottom: 30px;
 	text-shadow: 6px 5px 5px #000000;}
 
+
 p {
-	color: lightgrey;
+	color: #989494;
 	font-size: 20px;
 }
 
@@ -25,10 +26,8 @@ p {
 #map {
 	display: flex;
 	flex-wrap: wrap;
-	/*border: 1px solid black;*/
 	min-width: 432px;
 	max-width: 432px;
-	/*margin: 0 auto;*/
 }
 
 .square {
@@ -39,33 +38,15 @@ p {
 	margin: 1px;
 }
 
-#top-left {
-	border-top-left-radius: 30px;
-}
-
-#top-right {
-	border-top-right-radius: 30px;
-}
-
-#bottom-left {
-	border-bottom-left-radius: 30px;
-}
-
-#bottom-right {
-	border-bottom-right-radius: 30px;
-}
-
 #exit {
-	/*background-color: rgb(34, 34, 34);*/
-	border-right: 1px solid rgb(34, 34, 34);
-	border-left: 1px solid rgb(34, 34, 34);	
-	border-top: 1px solid #79170A;
-	border-bottom: 1px solid #79170A;
+	border-right: 1px solid #79170A;
+	border-left: 1px solid white;	
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
 }
 
 .wall {
 	background-image: url("images/mario-brick.png");
-	/*background-color: #79170A;*/
 	border: 1px solid #79170A;
 
 }
@@ -78,15 +59,19 @@ p {
 }
 
 #message {
-	font-family: 'Dosis', sans-serif;
 	width: 350px;
 	margin: 0 auto;
-	text-align: left;
+	text-align: inherit;
 	padding: 15px;
 }
 
+#message p {
+	margin: 94px auto;
+
+}
+
 button {
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Londrina Solid', cursive;
 	width: 104px;
 	height: 52px;
 	font-size: 15px;
@@ -95,14 +80,15 @@ button {
 }
 
 #instructions {
-    font-family: 'Dosis', sans-serif;
+	font-family: 'Londrina Solid', cursive;
     width: 104px;
     height: 25px;
     font-size: 12px;
-    border-radius: 10px;	
+    border-radius: 10px;
+    display: block;	
 }
 
-span {
+#red {
 	color: #E74C3C;
 }
 
