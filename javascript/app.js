@@ -147,7 +147,7 @@ const game = {
 	carString: ["A","B","C","D","E","F","G","H","I","J","K","L","M",
 				"N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
 
-	colourString: [	"#E74C3C", "#3949AB", "#2ECC71", "#A569BD", "#F4D03F",
+	colourString: [	"#E74C3C", "#3949AB", "#2ECC71", "#D69DE3", "#F4D03F",
 					"#F5B041", "#90CAF9", "#EF9A9A", "#1E8449", "#AFB42B",
 					"#0097A7", "#8E24AA", "#EC407A"], 
 
@@ -622,13 +622,15 @@ $('#start').on('click', () => {
 
 		if (game.youWin()){										// If player beat this level
 
-			$('#message').html("<p></p>");						// Remove Instructions
-
-			game.clearColour();									// Clear the board
+			$('#message').html("<p></p>");						// Remove Instructions + Win Text
 
 			game.currentLevel++;								// Level UP!
 
 			$('#level p').text("Level: " + game.currentLevel)	// Update level on screen
+
+			levelMessages();
+
+			game.clearColour();									// Clear the board
 
 			game.squares = [];
 			game.cars = [];
@@ -640,7 +642,6 @@ $('#start').on('click', () => {
 			game.updateCars();
 			game.borderColourSelect();
 	
-			levelMessages();
 		}
 
 	});
@@ -662,7 +663,8 @@ $('#start').on('click', () => {
 		game.makeSquares(game.currentLevel);			
 		game.makeCars();				
 		game.setDirection();
-		game.colourCars();
+		// game.colourCars();
+		game.updateCars();
 
 		$('#level p').text("Level: " + game.currentLevel)
 

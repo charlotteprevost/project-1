@@ -1,10 +1,10 @@
 ~~~~~~
 ~~~~~~
 ---------------------------------------------------------------------------------------------------------------
-# ///// P R O J E C T - 1 /////
+# /////////////// P R O J E C T - 1 ///////////////
 
 ---
-## ///// RUSH HOUR /////
+## ////////// RUSH HOUR //////////
 
 ---
 
@@ -19,7 +19,7 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 ~~~~~~
 ~~~~~~
 ---------------------------------------------------------------------------------------------------------------
-### ///// USER STORY /////
+### ////////// USER STORY //////////
 
 ---
 
@@ -54,15 +54,16 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 2. A Reset button 								// DONE
 3. Adding sound effects with possibility to mute
 4. A move count (including the number of minimum possible moves one can use to solve the puzzles)
+5. Make cars draggable instead of having to select click and deselect all the time
 
 ~~~~~~
 ~~~~~~
 ---------------------------------------------------------------------------------------------------------------
-### ///// CODE PRELIMINARIES /////
+### ////////// CODE PRELIMINARIES / WIREFRAMES //////////
 
 ---
 
-1. 'Grid' loads on screen
+1. 'Grid' loads on screen:
 	• Level will be generated from an array containing arrays of strings
 	• Strings each have their own UNIQUE coordinates in the arrays
 	• Some strings share values
@@ -76,10 +77,10 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 	• makeSquare(){}
 	• makeCar(){squares with same value will be objects pushed into an array, into an array of cars}
 
-3. One car
-	• One car = one array of squares, one square = one object
+3. One car:
+	• One car = one array of squares, one square = one object with coordinates
 
-4. Move car
+4. Move car:
 	• To move a car, click on the car to select it (if change of mind, click on car again to deselect it)
 	• Check direction (are cars' squares x equal or y equal?)
 	• Check occupied (is there a car that has a square that is on that position?)
@@ -115,14 +116,14 @@ The goal of the game is to shift the cars in an order/way for the "master" car t
 6 # . . . . . . #						
 7 # # # # # # # #						
 
-# # # # # # # #				
-# . . R Q Q Q #				
-# . . R . . . #				
-# . . . . . @ @ <--- WIN!  	
-# . . . . . Y #				
-# . P P G G Y #				
-# . . . . . Y #	
-# # # # # # # #
+  # # # # # # # #				
+  # . . R Q Q Q #				
+  # . . R . . . #				
+  # . . . . . @ @ <--- WIN!  	
+  # . . . . . Y #				
+  # . P P G G Y #				
+  # . . . . . Y #	
+  # # # # # # # #
 
 In this example, a possible move order would be:
 - PP 	left 1
@@ -132,12 +133,6 @@ In this example, a possible move order would be:
 - RR 	up 1
 - @@	right 5
 ```
-~~~~~~
-~~~~~~
----------------------------------------------------------------------------------------------------------------
-### ///// WIREFRAMES /////
-
----
 
 ```
 <--------------- USER SCREEN --------------->
