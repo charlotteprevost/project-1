@@ -55,11 +55,10 @@ class Square {
 		// this.occupied = false;
 	}
 
-	highlight() {
+	highlight() {		// Upcoming feature
 
 	}
 	unhighlight() {
-
 	}
 
 }
@@ -439,7 +438,7 @@ const game = {
 
 	/*********************************************** Select/Deselect Car *******************************************/
 
-	toggleSelect(xValue, yValue){ 							// When a car is selected it must be all squares that become selected
+	toggleSelect(xValue, yValue){ 							
 
 		for (let i = 0; i < game.cars.length; i++){		
 
